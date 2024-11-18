@@ -27,6 +27,7 @@ class ResPartner(models.Model):
 
     # incrementer ref
     def create(self, vals_list):
+        print("\n\n",vals_list,"\n\n")
         # Si un dictionnaire unique est passé, on le transforme en liste
         if isinstance(vals_list, dict):
             vals_list = [vals_list]
