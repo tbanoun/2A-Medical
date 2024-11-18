@@ -17,38 +17,6 @@ class ResPartner(models.Model):
     partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
 
-    def addContactSponsorship(self):
-        ids = self.parrinage_id.sponsorship.ids
-        print(f"\n\n Ids => {ids} \n\n")
-        print(f"\n\n id => {self.id} \n\n")
-        ids.append(self.id)
-        for id in ids:
-            pass
-
-        self.sudo().write({
-            'sponsorship': [(4, 0, [ids])]
-        }
-        )
-
-
-    # get parinage information
-    @api.onchange('partner')
-    def onSelectContactParrinage(self):
-        self.image_1920 = self.partner.image_1920
-        self.avatar_128 = self.partner.avatar_128
-        self.email = self.partner.email
-        self.name = self.partner.name
-        self.function = self.partner.function_job
-        self.title = self.partner.title.id
-        self.phone = self.partner.phone
-        self.mobile = self.partner.mobile
-        self.country_id = self.partner.country_id.id
-        self.street = self.partner.street
-        self.street2 = self.partner.street2
-        self.city = self.partner.city
-        self.state_id = self.partner.state_id.id
-        self.zip = self.partner.zip
-
     @api.model
     def update_presence_status(self, status):
         try:
@@ -210,7 +178,7 @@ class ResPartner(models.Model):
     def _get_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-                [("is_company", "=", self.is_company)]
+            [("is_company", "=", self.is_company)]
         ):
             selection.append(("%s" % emp.id, "%s" % emp.description))
         return selection
@@ -224,7 +192,7 @@ class ResPartner(models.Model):
     def _get_default_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-                [("is_company", "=", True)]  # type: ignore
+            [("is_company", "=", True)]  # type: ignore
         ):
             selection.append(("%s" % emp.id, "%s" % emp.description))
         return selection
