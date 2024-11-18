@@ -186,4 +186,4 @@ class Crmlead(models.Model):
                 vals.update({"visite_date_from": "2024-10-10"})
             if vals["stage_id"] == 1:  # remplacez par votre logique
                 vals.update({"visite_date_from": "", "priority": "0"})
-            return super(CrmLead, self).write(vals)
+            return super(Crmlead, self).write(vals)
