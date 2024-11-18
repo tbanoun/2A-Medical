@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="leader_data1"
+            model="customer.leader">
+            <field name="name">leader1</field>
+            <field name="description">leader1</field>
+        </record>
+        <record id="leader_data2"
+            model="customer.leader">
+            <field name="name">leader2</field>
+            <field name="description">leader2</field>
+        </record>
+    </data>
+</odoo>

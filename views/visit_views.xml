@@ -1,0 +1,55 @@
+<odoo>
+    <record id="visit_form"
+        model="ir.ui.view">
+        <field name="name">visit.form</field>
+        <field name="model">crm.lead</field>
+        <field name="arch"
+            type="xml">
+            <!-- Your custom XML code here -->
+            <form string="Customer adoption">
+                <sheet>
+                    <header>
+                        <!-- <button string="Draft" name="action_draft" type="object" class="btn-primary" invisible="state == 'draft'" /> -->
+
+
+                        <field name="state"
+                            widget="statusbar"
+                            statusbar_visible="draft,canceled"
+                            options="{'clickable':1}" />
+                    </header>
+                    <!-- Define the fields to be displayed -->
+                    <div class="o_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div >
+                    <group>
+                        <label for="description"
+                            string="Description" />
+                        <field name="description"
+                            nolabel="1" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- action -->
+    <record id="action_visit_tree"
+        model="ir.actions.act_window">
+        <field name="name">Visits</field>
+        <field name="res_model">crm.lead</field>
+    </record>
+    <!-- menu -->
+    <menuitem id="custom_visits_menu"
+        name="Visits2"
+        parent="visits_menu"
+        action="action_visit_tree"
+        sequence="30" />
+
+</odoo>

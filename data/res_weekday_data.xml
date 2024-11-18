@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="samedi"
+            model="res.weekday">
+            <field name="name">Samedi</field>
+        </record>
+        <record id="dimanche"
+            model="res.weekday">
+            <field name="name">Dimanche</field>
+        </record>
+        <record id="lundi"
+            model="res.weekday">
+            <field name="name">Lundi</field>
+        </record>
+        <record id="lundi"
+            model="res.weekday">
+            <field name="name">Lundi</field>
+        </record>
+        <record id="mardi"
+            model="res.weekday">
+            <field name="name">Mardi</field>
+        </record>
+        <record id="mercredi"
+            model="res.weekday">
+            <field name="name">Mercredi</field>
+        </record>
+        <record id="jeudi"
+            model="res.weekday">
+            <field name="name">Jeudi</field>
+        </record>
+        <record id="vendredi"
+            model="res.weekday">
+            <field name="name">Vendredi</field>
+        </record>
+    </data>
+</odoo>

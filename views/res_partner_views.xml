@@ -1,0 +1,454 @@
+<odoo>
+    <record id="new_field_view_partner_form"
+        model="ir.ui.view">
+        <field name="name">contacts custom form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id"
+            ref="base.view_partner_form" />
+        <field name="arch"
+            type="xml">
+            <xpath expr="//sheet//div[@class='oe_title mb24']"
+                position="inside">
+                <group name="name">
+                    <div class="oe_title">
+                        <h2>
+                            <strong>
+                                <field name="ref"
+                                    nolabel="1" />
+                            </strong>
+                        </h2>
+                    </div>
+                </group>
+            </xpath>
+
+            <xpath expr="//div[@class='o_address_format']/ancestor::group[2]"
+                position="replace">
+                <field name="type"
+                    invisible="1" />
+                <field name="street"
+                    invisible="1" />
+                <field name="street2"
+                    invisible="1" />
+                <field name="city"
+                    invisible="1" />
+                <field name="state_id"
+                    invisible="1" />
+                <field name="zip"
+                    invisible="1" />
+                <field name="country_id"
+                    invisible="1" />
+                <field name="vat"
+                    invisible="1" />
+                <field name="phone"
+                    invisible="1" />
+                <field name="mobile"
+                    invisible="1" />
+                <field name="user_ids"
+                    invisible="1" />
+                <field name="email"
+                    invisible="1" />
+                <field name="website"
+                    invisible="1" />
+                <field name="title"
+                    invisible="1" />
+                <field name="active_lang_count"
+                    invisible="1" />
+                <field name="lang"
+                    invisible="1" />
+                <field name="category_id"
+                    invisible="1" />
+                <field name="function"
+                    invisible="1" />
+                <field name="active_lang_count"
+                    invisible="1" />
+
+
+                <!-- <field name="lang" invisible="1" /> -->
+                <group name="group_principal">
+                    <group name="group_address"
+                        string="Address1"
+                        col="1">
+                        <group name="group_street">
+                            <field name="country_id"
+                                placeholder="Country"
+                                options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                            <field name="street"
+                                placeholder="Street..."
+                                readonly="type == 'contact' and parent_id" />
+                            <field name="street2"
+                                placeholder="Street 2..."
+                                readonly="type == 'contact' and parent_id" />
+                        </group>
+                        <group >
+                            <field name="user_id"
+                                widget="selection"
+                                placeholder="e.g. walid"
+                                groups="contacts_dnd.masterData_manager_group" />
+                        </group>
+                        <group name="group_contacts"
+                            col="2">
+                            <group>
+                                <field name="phone"
+                                    widget="phone" />
+                                <field name="mobile"
+                                    widget="phone" />
+                            </group>
+                            <group>
+                                <field name="user_ids"
+                                    invisible="1" />
+                                <field name="email"
+                                    widget="email"
+                                    context="{'gravatar_image': True}"
+                                    required="user_ids" />
+                                <field name="website"
+                                    string="Website"
+                                    widget="url"
+                                    placeholder="e.g. https://www.odoo.com" />
+                            </group>
+                        </group>
+                    </group>
+                    <group name="address"
+                        string="Address2"
+                        col="1">
+                        <group name="group_title_function"
+                            col="12">
+                            <group colspan="4">
+                                <field name="title"
+                                    options='{"no_open": True}'
+                                    placeholder="e.g. Mister"
+                                    invisible="is_company" />
+                            </group>
+                            <group colspan="8">
+                                <field name="function_job"
+                                    invisible="is_company" />
+                            </group>
+                        </group>
+                        <group name="group_lang">
+                            <field name="lang"
+                                invisible="active_lang_count &lt;= 1" />
+                            <field name="category_id"
+                                widget="many2many_tags"
+                                placeholder='e.g. "B2B", "VIP", "Consulting", ...' />
+                        </group>
+                        <group name="group_wilaya"
+                            col="2">
+                            <group>
+                                <field name="wilaya_id"
+                                    placeholder="Wilaya"
+                                    options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                            </group>
+                            <group>
+                                <field name="commune_id"
+                                    placeholder="Commune"
+                                    class="o_address_commune"
+                                    options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                            </group>
+                            <group>
+                                <field name="locality_id"
+                                    placeholder="Localité"
+                                    class="o_address_locality"
+                                    options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                            </group>
+                            <group>
+                                <field name="zone"
+                                    placeholder="zone"
+                                    class="o_address_zone"
+                                    readonly="1" />
+                            </group>
+                            <group>
+                                <field name="zip"
+                                    placeholder="ZIP"
+                                    class="o_address_zip"
+                                    readonly="1" />
+                            </group>
+                        </group>
+                    </group>
+                </group>
+
+            </xpath>
+            <xpath expr="//page[@name='contact_addresses']"
+                position="attributes">
+                <attribute name="autofocus">false</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='contact_addresses']"
+                position="before">
+                <page id="customer_segmentation"
+                    string="Ségmentation">
+                    <group class="container_row_2">
+                        <!-- invisible="is_company == True" -->
+                        <group name="group_by1"
+                            string="Potentiel">
+                            <field name="code_potential"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                            <field name="code_adoption"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                            <field name="code_solvency"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                            <field name="code_leader"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                        </group>
+                        <group name="group_by2"
+                            string="Categorie">
+                            <field name='code_category'
+                                options="{'no_create': True}"
+                                class="form-control" />
+                            <field name='code_sector'
+                                options="{'no_create': True}"
+                                class="form-control" />
+                            <field name='code_typologie'
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                        </group>
+                    </group>
+                </page>
+                <page name="customer_persona"
+                    string="Visites &amp; Formations">
+                    <group col="3">
+                        <group name="group_by3"
+                            string="Persona">
+                            <field name="code_persona"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                class="form-control" />
+
+                            <field name="code_canal"
+                                options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                                widget="many2many_tags"
+                                class="form-control" />
+                            <field name="code_interest"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                        </group>
+                        <group name="group_by4"
+                            string="Infos">
+                            <field name="code_learning"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                            <field name="code_product"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                        </group>
+                        <group name="group_by5"
+                            string="Infos"
+                            class="form-group">
+                            <field name="reception_day"
+                                widget="many2many_tags"
+                                options="{'no_quick_create': True, 'no_create_edit' : True, 'no_create': True}"
+                                class="form-control" />
+                            <field name="reception_time"
+                                class="form-control" />
+                            <field name="freq_nbr"
+                                class="form-control" />
+                            <field name="code_type_freq"
+                                options="{'no_create': True}"
+                                class="form-control" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='customer_persona']"
+                position="attributes">
+                <attribute name="autofocus">true</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="new_field_view_partner_search"
+        model="ir.ui.view">
+        <field name="name">new field view partner search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+            ref="base.view_res_partner_filter" />
+        <field name="arch"
+            type="xml">
+            <xpath expr="//group[@name='group_by']"
+                position="after">
+                <field name="wilaya_id" />
+                <field name="commune_id" />
+                <field name="locality_id" />
+                <field name="zone" />
+                <field name="code_potential" />
+                <field name="code_adoption" />
+                <field name="code_solvency" />
+                <field name="code_leader" />
+                <field name="code_category" />
+                <field name="code_sector" />
+                <field name="code_typologie" />
+                <group expand="0"
+                    name="group_by"
+                    string="Group By">
+                    <filter name="wilaya_id"
+                        string="Wilaya"
+                        domain="[]"
+                        context="{'group_by' : 'wilaya_id'}" />
+                    <filter name="commune_id"
+                        string="Commune"
+                        domain="[]"
+                        context="{'group_by' : 'commune_id'}" />
+                    <filter name="locality_id"
+                        string="Locality"
+                        domain="[]"
+                        context="{'group_by' : 'locality_id'}" />
+                    <filter name="zone"
+                        string="Zone"
+                        domain="[]"
+                        context="{'group_by' : 'zone'}" />
+                    <filter name="code_potential"
+                        string="Potential"
+                        domain="[]"
+                        context="{'group_by' : 'code_potential'}" />
+                    <filter name="code_adoption"
+                        string="Adoption"
+                        domain="[]"
+                        context="{'group_by' : 'code_adoption'}" />
+                    <filter name="code_solvency"
+                        string="Solvency"
+                        domain="[]"
+                        context="{'group_by' : 'code_solvency'}" />
+                    <filter name="code_category"
+                        string="Cetegory"
+                        domain="[]"
+                        context="{'group_by' : 'code_category'}" />
+                    <group expand="0"
+                        string="Potentiel">
+                        <filter name="filter_Potentiel1"
+                            string="Potentiel Fort"
+                            domain="[('code_potential', '=', '1')]" />
+                        <filter name="filter_Potentiel2"
+                            string="Potentiel Moyen"
+                            domain="[('code_potential', '=', '2')]" />
+                        <filter name="filter_Potentiel3"
+                            string="Potentiel Faible"
+                            domain="[('code_potential', '=', '3')]" />
+                        <filter name="filter_Adoption1"
+                            string="Adoption Champion"
+                            domain="[('code_adoption', '=', '4')]" />
+                        <filter name="filter_Adoption2"
+                            string="Adoption Régulier"
+                            domain="[('code_adoption', '=', '3')]" />
+                        <filter name="filter_Adoption3"
+                            string="Adoption Débutant"
+                            domain="[('code_adoption', '=', '2')]" />
+                    </group>
+
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="new_field_view_partner_tree"
+        model="ir.ui.view">
+        <field name="name">contacts custom tree</field>
+        <field name="model">res.partner</field>
+        <field name="type">tree</field>
+
+        <field name="inherit_id"
+            ref="base.view_partner_tree" />
+        <field name="arch"
+            type="xml">
+            <field name="city"
+                invisible="1" />
+
+            <xpath expr="//tree/field[@name='country_id']"
+                position="after">
+                <field name="wilaya_id"
+                    string="wilaya"
+                    optional="show" />
+                <field name="commune_id"
+                    string="commune"
+                    optional="show" />
+                <field name="locality_id"
+                    string="locality"
+                    optional="show" />
+                <field name="zone"
+                    string="zone"
+                    optional="show" />
+                <field name="code_potential"
+                    string="Potential"
+                    optional="show" />
+                <field name="code_adoption"
+                    string="Adoption"
+                    optional="show" />
+                <field name="code_solvency"
+                    string="Solvency"
+                    optional="show" />
+                <field name="code_leader"
+                    string="Leader"
+                    optional="show" />
+                <field name="code_category"
+                    string="Cetegory"
+                    optional="show" />
+                <field name="code_sector"
+                    string="Sector"
+                    optional="show" />
+                <field name="code_typologie"
+                    string="Typologie"
+                    optional="show" />
+                <field name="freq_nbr"
+                    string="Frequency NBR"
+                    optional="show" />
+                <field name="code_type_freq"
+                    string="Frequency"
+                    optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <!-- action server -->
+    <record id="action_partner_user_current"
+        model="ir.actions.act_window">
+        <field name="name">Partner Current User</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- <record id="action_frequence_line_create" model="ir.actions.server">
+        <field name="name">Create Frence Line</field>
+        <field name="model_id" ref="contacts_dnd.model_res_partner" />
+        <field name="binding_model_id" ref="contacts_dnd.model_res_partner" />
+        <field name="state">code</field>
+        <field name="code">model.create_frequency()</field>
+    </record> -->
+
+    <!-- <menuitem id="contactscustom_menu_item" name="Locality" parent="contacts_custom_menu_root" action="action_contacts_inherit" sequence="20" /> -->
+</odoo>
+<!-- <group name="street" string="Street">
+    <div class="o_address_format">
+        <field name="street" placeholder="Street..." class="o_address_street" readonly="type == 'contact' and parent_id" />
+        <field name="street2" placeholder="Street 2..." class="o_address_street" readonly="type == 'contact' and parent_id" />
+    </div>
+</group> -->
+
+<!-- <div>
+                            <field name="street" nolabel="1" placeholder="Street..." class="o_address_street" />
+                        </div>
+                        <div>
+                            <field name="street2" nolabel="1" placeholder="Street 2..." class="o_address_street" />
+                        </div> -->
+
+
+
+<!-- readonly="type == 'contact' and parent_id" -->
+
+
+<!-- <record id="new_field_view_partner_search" model="ir.ui.view">
+        <field name="name">new field view partner search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+
+        </field>
+    </record> -->

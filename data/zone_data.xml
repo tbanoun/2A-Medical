@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="zone_01"
+            model="customer.zone">
+            <field name="name">OUEST</field>
+            <field name="description">OUEST</field>
+        </record>
+
+        <record id="zone_02"
+            model="customer.zone">
+            <field name="name">CENTRE OUEST</field>
+            <field name="description">CENTRE OUEST</field>
+        </record>
+        <record id="zone_03"
+            model="customer.zone">
+            <field name="name">EXTREME EST</field>
+            <field name="description">EXTREME EST</field>
+        </record>
+        <record id="zone_04"
+            model="customer.zone">
+            <field name="name">EST</field>
+            <field name="description">EST</field>
+        </record>
+        <record id="zone_05"
+            model="customer.zone">
+            <field name="name">KABYLIE</field>
+            <field name="description">KABYLIE</field>
+        </record>
+        <record id="zone_06"
+            model="customer.zone">
+            <field name="name">CENTRE CENTRE</field>
+            <field name="description">CENTRE CENTRE</field>
+        </record>
+        <record id="zone_07"
+            model="customer.zone">
+            <field name="name">CENTRE EST</field>
+            <field name="description">CENTRE EST</field>
+        </record>
+    </data>
+</odoo>

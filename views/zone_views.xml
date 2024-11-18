@@ -1,0 +1,68 @@
+<odoo>
+    <record id="contactscustomer_zone_tree"
+        model="ir.ui.view">
+        <field name="name">Partner zone tree view</field>
+        <field name="model">customer.zone</field>
+        <field name="arch"
+            type="xml">
+            <tree string="Partner zone"
+                class="header_custom">
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="contactscustomer_zone_form"
+        model="ir.ui.view">
+        <field name="name">Contacts zone form view</field>
+        <field name="model">customer.zone</field>
+        <field name="arch"
+            type="xml">
+            <form string="Contacts zone">
+                <sheet>
+                    <div class="o_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div >
+                    <group>
+                        <label for="description"
+                            string="Description" />
+                        <field name="description"
+                            nolabel="1" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="action_customer_zone_tree"
+        model="ir.actions.act_window">
+        <field name="name">Zone Action</field>
+        <field name="res_model">customer.zone</field>
+    </record>
+
+    <menuitem id="zone_menu_root"
+        name="Contacts Zone"
+        parent="contacts.res_partner_menu_config"
+        sequence="10" />
+
+    <!-- menu -->
+    <menuitem id="zone_menu_item"
+        name="Zones"
+        parent="zone_menu_root"
+        action="action_customer_zone_tree"
+        sequence="30" />
+</odoo>
+
+
+
+

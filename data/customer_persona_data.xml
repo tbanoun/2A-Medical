@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="persona_data1"
+            model="customer.persona">
+            <field name="name">Rouge</field>
+            <field name="description">Rouge</field>
+        </record>
+        <record id="persona_data2"
+            model="customer.persona">
+            <field name="name">Bleu</field>
+            <field name="description">Bleu</field>
+        </record>
+        <record id="persona_data3"
+            model="customer.persona">
+            <field name="name">Vert</field>
+            <field name="description">Vert</field>
+        </record>
+        <record id="persona_data4"
+            model="customer.persona">
+            <field name="name">Jaune</field>
+            <field name="description">Jaune</field>
+        </record>
+    </data>
+</odoo>

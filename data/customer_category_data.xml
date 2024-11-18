@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="category_data1"
+            model="customer.category">
+            <field name="name">Partenaire</field>
+            <field name="description">Partenaire</field>
+            <field name="is_company">True</field>
+        </record>
+        <record id="category_data2"
+            model="customer.category">
+            <field name="name">Grossiste</field>
+            <field name="description">Grossiste</field>
+            <field name="is_company">True</field>
+        </record>
+        <record id="category_data3"
+            model="customer.category">
+            <field name="name">Pharmacie</field>
+            <field name="description">Pharmacie</field>
+            <field name="is_company">True</field>
+        </record>
+        <record id="category_data4"
+            model="customer.category">
+            <field name="name">Laboratoire</field>
+            <field name="description">Laboratoire</field>
+            <field name="is_company">True</field>
+        </record>
+        <record id="category_data5"
+            model="customer.category">
+            <field name="name">Cabinet</field>
+            <field name="description">Cabinet médicale</field>
+            <field name="is_company">True</field>
+        </record>
+        <record id="category_data6"
+            model="customer.category">
+            <field name="name">Public</field>
+            <field name="description">Public</field>
+            <field name="is_company">True</field>
+        </record>
+        <!-- is_company=false -->
+        <record id="category_data7"
+            model="customer.category">
+            <field name="name">Pharmacien</field>
+            <field name="description">Pharmacien</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data8"
+            model="customer.category">
+            <field name="name">Kinésithérapeute</field>
+            <field name="description">Kinésithérapeute</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data9"
+            model="customer.category">
+            <field name="name">Médecin Généraliste</field>
+            <field name="description">Médecin Généraliste</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data10"
+            model="customer.category">
+            <field name="name">Médecin Spécialiste</field>
+            <field name="description">Médecin Spécialiste</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data11"
+            model="customer.category">
+            <field name="name">Chirurgien</field>
+            <field name="description">Chirurgien</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data12"
+            model="customer.category">
+            <field name="name">Anesthésiste</field>
+            <field name="description">Anesthésiste</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data13"
+            model="customer.category">
+            <field name="name">Pédiatre</field>
+            <field name="description">Pédiatre</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data14"
+            model="customer.category">
+            <field name="name">Gynécologue-Obstétricien</field>
+            <field name="description">Gynécologue-Obstétricien</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data15"
+            model="customer.category">
+            <field name="name">Radiologue</field>
+            <field name="description">Radiologue</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data16"
+            model="customer.category">
+            <field name="name">Psychiatre</field>
+            <field name="description">Psychiatre</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data17"
+            model="customer.category">
+            <field name="name">Infirmier/Infirmière</field>
+            <field name="description">Infirmier/Infirmière</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data18"
+            model="customer.category">
+            <field name="name">Sage-Femme</field>
+            <field name="description">Sage-Femme</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data19"
+            model="customer.category">
+            <field name="name">Diététicien/Nutritionniste</field>
+            <field name="description">Diététicien/Nutritionniste</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data20"
+            model="customer.category">
+            <field name="name">Technicien de Laboratoire</field>
+            <field name="description">Technicien de Laboratoire</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data21"
+            model="customer.category">
+            <field name="name">Manipulateur en Radiologie</field>
+            <field name="description">Manipulateur en Radiologie</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data22"
+            model="customer.category">
+            <field name="name">Assistant Médical</field>
+            <field name="description">Assistant Médical</field>
+            <field name="is_company">False</field>
+        </record>
+        <record id="category_data23"
+            model="customer.category">
+            <field name="name">Préparateur en Pharmacie</field>
+            <field name="description">Préparateur en Pharmacie</field>
+            <field name="is_company">False</field>
+        </record>
+    </data>
+</odoo>

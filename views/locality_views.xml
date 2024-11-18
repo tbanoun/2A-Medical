@@ -1,0 +1,81 @@
+<odoo>
+    <record id="locality_tree"
+        model="ir.ui.view">
+        <field name="name">Contacts locality tree view</field>
+        <field name="model">customer.locality</field>
+        <field name="arch"
+            type="xml">
+            <tree string="Partner locality"
+                class="header_custom">
+                <field name="name" />
+                <field name="code" />
+                <field name="wilaya_id" />
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="rescustomer_locality_form"
+        model="ir.ui.view">
+        <field name="name">partner locality form view</field>
+        <field name="model">customer.locality</field>
+        <field name="arch"
+            type="xml">
+            <form string="Partner Locality">
+                <sheet>
+                    <!-- <header>
+                        <button string="Draft" name="action_draft" type="object" class="btn-primary" invisible="state == 'draft'" />
+                        <button string="Cancel" name="action_canceled" type="object" class="btn-secondary" invisible="state != 'draft'" />
+                        <button string="Confirme" name="action_confirmed" type="object" class="btn-success" invisible="state != 'canceled'" />
+
+                        
+                    </header> -->
+                    <!-- Define the fields to be displayed -->
+                    <div class="o_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div >
+                    <group>
+                        <label for="code"
+                            string="Code" />
+                        <field name="code"
+                            nolabel="1" />
+                    </group>
+                    <group>
+                        <label for="wilaya_id"
+                            string="Wilaya" />
+                        <field name="wilaya_id"
+                            nolabel="1" />
+                    </group>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- action -->
+    <record id="action_customer_locality_tree"
+        model="ir.actions.act_window">
+        <field name="name">Locality Action Tree</field>
+        <field name="res_model">customer.locality</field>
+    </record>
+
+    <!-- menu -->
+    <menuitem id="locality_menu_item"
+        name="Locality"
+        parent="zone_menu_root"
+        action="action_customer_locality_tree"
+        sequence="20" />
+
+</odoo>
+
+
+

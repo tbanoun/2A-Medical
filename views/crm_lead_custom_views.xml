@@ -1,0 +1,144 @@
+<odoo>
+    <record id="view_crm_lead_form_inherited"
+        model="ir.ui.view">
+        <field name="name">crm.lead.form.inherited</field>
+        <field name="model">crm.lead</field>
+        <field name="type">form</field>
+        <field name="inherit_id"
+            ref="crm.crm_lead_view_form" />
+        <field name="arch"
+            type="xml">
+            <field name="probability"
+                invisible="1" />
+            <xpath expr="//group[@name='opportunity_partner']"
+                position="inside">
+
+                <field name="zone_partner" />
+                <field name="visite_date_from" />
+                <field name="visite_date_to" />
+                <field name="user_id_duo"
+                    widget="many2many_tags" />
+            </xpath>
+            <!-- <xpath expr="//header" position="inside">
+                <button name="action_create_lead" type="object" string="Créer Nouvelle Opportunité" class="btn-primary" invisible="0" />
+            </xpath> -->
+            <xpath expr="//page[@name='internal_notes']"
+                position="before">
+                <page id="details_visite1"
+                    string="Visite | Détails">
+                    <group col="2">
+                        <group name="group_1"
+                            string="Infos">
+                            <field name="message_fort" />
+                            <field name="point_accord" />
+                            <field name="besoin_particulier" />
+                        </group>
+                        <group name="group_2"
+                            string="Objectif de la viste | Objection">
+                            <field name="code_visit_next"
+                                widget="html" />
+                            <field name="code_visite_objection"
+                                widget="html" />
+                            <field name="typo_prescription"
+                                widget="html" />
+                        </group>
+                    </group>
+                </page>
+
+                <page id="details_visite2"
+                    string="Produits | Remis">
+                    <group col="2">
+                        <group name="group_3"
+                            string="Produits | Echantillions">
+                            <field name="product_presented"
+                                widget="many2many_tags" />
+                            <field name="product_echant"
+                                widget="many2many_tags" />
+                        </group>
+                        <group name="group_4"
+                            string="Les remis">
+                            <field name="remis"
+                                widget="many2many_tags" />
+                            <field name="product_discount"
+                                widget="many2many_tags" />
+                        </group>
+                    </group>
+                </page>
+                <page id="events_customer"
+                    string="Evenements">
+                    <group col="2">
+                        <group name="group_3"
+                            string="Evènements">
+                            <field name="events_id"
+                                widget="many2many_tags" />
+                            <field name="events_dates" />
+                        </group>
+                        <group name="group_4"
+                            string="Invitations">
+                            <field name="invitation"
+                                widget="html" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <!-- <record id="view_crm_lead_search_inherited" model="ir.ui.view">
+        <field name="name">crm.lead.search.inherited</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="zone_partner" string="Zone Client" />
+                <filter name="
+                    zone_partner" string="
+                    Zone Client" domain="
+                    []" context="
+                    {'group_by'
+                    : 'zone_partner'
+                    }" />
+            </xpath>
+        </field>
+    </record> -->
+
+    <!-- <record id="view_crm_lead_kanban_inherited" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.inherited</field>
+        <field name="model">crm.lead</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_create_lead" type="object" class="o_button_generate_leads" string="Generate Leadsssss" />
+            </xpath>
+        </field>
+    </record> -->
+
+    <record id="view_crm_lead_calendar_inherited"
+        model="ir.ui.view">
+        <field name="name">crm.lead.calendar.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id"
+            ref="crm.crm_case_calendar_view_leads" />
+        <field name="arch"
+            type="xml">
+            <xpath expr="//calendar"
+                position="attributes">
+                <attribute name="color">partner_id</attribute>
+                <attribute name="date_start">visite_date_from</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="action_generate_leads" model="ir.actions.server">
+        <field name="name">Generate Leads CRM</field>
+        <field name="model_id" ref="crm_dnd.model_crm_lead" />
+        <field name="binding_model_id" ref="crm_dnd.model_crm_lead" />
+        <field name="state">code</field>
+        <field name="code">model.action_create_lead()</field>
+    </record> -->
+
+    <!-- <menuitem id="customer_leads_menu" name="Leads Generate" parent="leads_generate_menu" action="action_generate_leads" sequence="110" /> -->
+
+</odoo>

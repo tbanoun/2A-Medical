@@ -1,0 +1,99 @@
+<odoo>
+    <record id="customer_category_tree"
+        model="ir.ui.view">
+        <field name="name">customer category tree view</field>
+        <field name="model">customer.category</field>
+        <field name="arch"
+            type="xml">
+            <tree string="Customer Category"
+                class="header_custom">
+                <!-- decoration-muted="(state) == 'draft'" decoration-success="(state) == 'confirmed'" -->
+                <field name="name" />
+                <field name="description" />
+                <field name="is_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="customer_category_form"
+        model="ir.ui.view">
+        <field name="name">customer category form view</field>
+        <field name="model">customer.category</field>
+        <field name="arch"
+            type="xml">
+            <form string="Customer Category">
+                <sheet>
+                    <group>
+                        <field name="company_type"
+                            widget="radio"
+                            nolabel="1" />
+                    </group>
+                    <div class="o_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div >
+                    <group>
+                        <label for="description"
+                            string="Description" />
+                        <field name="description"
+                            nolabel="1" />
+                    </group>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- action server -->
+    <record id="category_closed_server_action"
+        model="ir.actions.server">
+        <field name="name">Transfert Facture</field>
+        <field name="model_id"
+            ref="model_customer_category" />
+        <field name="binding_model_id"
+            ref="model_customer_category" />
+        <field name="state">code</field>
+        <field name="code">action=records.action_transfert()</field>
+    </record>
+
+
+
+    <!-- <record id="check_selling_cron" model="ir.cron">
+        <field name="name">Proprety: check selling date </field>
+        <field name="model_id" ref="model_customer_category" />
+        <field name="state">code</field>
+        <field name="code">model._check_selleing_date()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+    </record> -->
+
+    <record id="action_customer_category_tree"
+        model="ir.actions.act_window">
+        <field name="name">Category</field>
+        <field name="res_model">customer.category</field>
+    </record>
+
+    <!-- menu -->
+    <menuitem id="contacts_custom_menu_root"
+        name="Parametres clients"
+        parent="contacts.res_partner_menu_config"
+        sequence="0" />
+
+    <menuitem id="customer_category_menu"
+        name="Categorie"
+        parent="contacts_custom_menu_root"
+        action="action_customer_category_tree"
+        sequence="120" />
+</odoo>
+
+
+

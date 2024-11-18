@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sector_data1"
+            model="customer.sector">
+            <field name="name">Exo</field>
+            <field name="description">Exo</field>
+            <field name="state">draft</field>
+        </record>
+        <record id="sector_data2"
+            model="customer.sector">
+            <field name="name">Import/Export</field>
+            <field name="description">Import/Export</field>
+            <field name="state">draft</field>
+        </record>
+        <record id="sector_data3"
+            model="customer.sector">
+            <field name="name">Régime nationale</field>
+            <field name="description">Régime nationale</field>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>

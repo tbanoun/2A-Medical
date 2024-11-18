@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="adoption_data1"
+            model="customer.adoption">
+            <field name="name">Non préscripteur</field>
+            <field name="description">Non préscripteur</field>
+        </record>
+        <record id="adoption_data2"
+            model="customer.adoption">
+            <field name="name">Débutant</field>
+            <field name="description">Débutant</field>
+        </record>
+        <record id="adoption_data3"
+            model="customer.adoption">
+            <field name="name">Régulier</field>
+            <field name="description">Régulier</field>
+        </record>
+        <record id="adoption_data4"
+            model="customer.adoption">
+            <field name="name">Champion</field>
+            <field name="description">Champion</field>
+        </record>
+    </data>
+</odoo>

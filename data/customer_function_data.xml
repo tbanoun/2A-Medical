@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="function_data1"
+            model="customer.function">
+            <field name="name">FONCTION 001</field>
+            <field name="description">Fonction 001</field>
+        </record>
+        <record id="function_data2"
+            model="customer.function">
+            <field name="name">FONCTION 002</field>
+            <field name="description">Fonction 002</field>
+        </record>
+    </data>
+</odoo>

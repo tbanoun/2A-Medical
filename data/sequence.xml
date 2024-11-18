@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="res_partner_crm_sequence"
+            model="ir.sequence">
+            <field name="name">Res partner CRM custom sequence</field>
+            <field name="code">res_partner_seq</field>
+            <field name="prefix">CLT</field>
+            <field name="padding">5</field>
+            <field name="company_id"
+                eval="False" />
+        </record>
+    </data>
+</odoo>

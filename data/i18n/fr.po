@@ -1,0 +1,663 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* contacts_dnd
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240521\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-11 16:35+0000\n"
+"PO-Revision-Date: 2024-10-11 17:41+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_needaction
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_needaction
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_needaction
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_needaction
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_needaction
+msgid "Action Needed"
+msgstr "Action Nécessaire"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_exception_decoration
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_exception_decoration
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_exception_decoration
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_exception_decoration
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Décoration d’exception d’activité"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_state
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_state
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_state
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_state
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_state
+msgid "Activity State"
+msgstr "État de l’activité"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_type_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_type_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_type_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_type_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d’activité"
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "Address"
+msgstr "Adresse"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_attachment_count
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_attachment_count
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_attachment_count
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_attachment_count
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_attachment_count
+msgid "Attachment Count"
+msgstr "Fichier(s) joint(s)"
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.view_jobs_calendar
+msgid "Calendrier des événements"
+msgstr "Calendrier des événements"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__code
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__code
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__description
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.contacts_commune_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.res_locality_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.wilaya_form
+msgid "Code"
+msgstr "Code"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__country_id
+msgid "Code Pays"
+msgstr "Code Pays"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__ref
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__ref
+msgid "Code Tiers"
+msgstr "Référence"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__code
+msgid "Code Wilaya"
+msgstr "Code Wilaya"
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__commune_id
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__commune_id
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_search
+msgid "Commune"
+msgstr "Commune"
+
+#. module: contacts_dnd
+#: model:ir.actions.act_window,name:contacts_dnd.action_commune_tree
+msgid "Commune Action"
+msgstr "Commune Action"
+
+#. module: contacts_dnd
+#: model:ir.ui.menu,name:contacts_dnd.commune_menu_item
+msgid "Communes"
+msgstr "Communes"
+
+#. module: contacts_dnd
+#: model:ir.model,name:contacts_dnd.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.ui.menu,name:contacts_dnd.jobs_menu_root
+msgid "Contacts Jobs"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.wilaya_form
+msgid "Contacts Wilaya"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.ui.menu,name:contacts_dnd.zone_menu_root
+msgid "Contacts Zone"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.contacts_commune_form
+msgid "Contacts commune"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.res_wilaya_tree
+msgid "Contacts wilaya"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.wilaya_form
+msgid "Country"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model,name:contacts_dnd.model__commune
+msgid "Country State Commune"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model,name:contacts_dnd.model__zone
+msgid "Country State Zone"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model,name:contacts_dnd.model__locality
+msgid "Country State locality"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__create_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__create_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__create_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__create_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__create_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__create_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__create_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__create_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__date_jobs
+msgid "Date jobs"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__description
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.jobs_form
+msgid "Description"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__display_name
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__display_name
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__display_name
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__display_name
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_follower_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_follower_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_follower_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_follower_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_partner_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_partner_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_partner_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_partner_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__activity_type_icon
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__activity_type_icon
+#: model:ir.model.fields,help:contacts_dnd.field__locality__activity_type_icon
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__activity_type_icon
+#: model:ir.model.fields,help:contacts_dnd.field__zone__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__function_list
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__function_list
+msgid "Function"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_search
+msgid "Group By"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__has_message
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__has_message
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__has_message
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__has_message
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__id
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__id
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__id
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__id
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__id
+msgid "ID"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_exception_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_exception_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_exception_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_exception_icon
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__activity_exception_icon
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__activity_exception_icon
+#: model:ir.model.fields,help:contacts_dnd.field__locality__activity_exception_icon
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__activity_exception_icon
+#: model:ir.model.fields,help:contacts_dnd.field__zone__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__message_needaction
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__message_needaction
+#: model:ir.model.fields,help:contacts_dnd.field__locality__message_needaction
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__message_needaction
+#: model:ir.model.fields,help:contacts_dnd.field__zone__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__message_has_error
+#: model:ir.model.fields,help:contacts_dnd.field__commune__message_has_sms_error
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__message_has_error
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__message_has_sms_error
+#: model:ir.model.fields,help:contacts_dnd.field__locality__message_has_error
+#: model:ir.model.fields,help:contacts_dnd.field__locality__message_has_sms_error
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__message_has_error
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__message_has_sms_error
+#: model:ir.model.fields,help:contacts_dnd.field__zone__message_has_error
+#: model:ir.model.fields,help:contacts_dnd.field__zone__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_is_follower
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_is_follower
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_is_follower
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_is_follower
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model,name:contacts_dnd.model__jobs
+msgid "Job Functions"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.ui.menu,name:contacts_dnd.jobs_menu_item
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.jobs_form
+msgid "Jobs"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.actions.act_window,name:contacts_dnd.action_jobs_tree
+msgid "Jobs action tree"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__write_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__write_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__write_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__write_uid
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__write_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__write_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__write_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__write_date
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.ui.menu,name:contacts_dnd.locality_menu_item
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_search
+msgid "Locality"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.actions.act_window,name:contacts_dnd.action_locality_tree
+msgid "Locality Action Tree"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__locality_id
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__locality_id
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "Localité"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_has_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_has_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_has_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_has_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__mobile
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__my_activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__my_activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__my_activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__my_activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__name
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__name
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__name
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__name
+msgid "Name"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_calendar_event_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_calendar_event_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_calendar_event_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_calendar_event_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_date_deadline
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_summary
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_summary
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_summary
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_summary
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_type_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_type_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_type_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_type_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_needaction_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_needaction_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_needaction_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_needaction_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_has_error_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_has_error_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_has_error_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_has_error_counter
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__message_needaction_counter
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__message_needaction_counter
+#: model:ir.model.fields,help:contacts_dnd.field__locality__message_needaction_counter
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__message_needaction_counter
+#: model:ir.model.fields,help:contacts_dnd.field__zone__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__message_has_error_counter
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__message_has_error_counter
+#: model:ir.model.fields,help:contacts_dnd.field__locality__message_has_error_counter
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__message_has_error_counter
+#: model:ir.model.fields,help:contacts_dnd.field__zone__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.jobs_tree
+msgid "Partner Jobs"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.res_locality_form
+msgid "Partner Locality"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.contacts_commune_tree
+msgid "Partner commune"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.locality_tree
+msgid "Partner locality"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__prescriptor
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__prescriptor
+msgid "Prescriptor"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__rating_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__rating_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__rating_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__rating_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__activity_user_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__activity_user_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__activity_user_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__activity_user_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__message_has_sms_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__message_has_sms_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__message_has_sms_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__message_has_sms_error
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__activity_state
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__activity_state
+#: model:ir.model.fields,help:contacts_dnd.field__locality__activity_state
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__activity_state
+#: model:ir.model.fields,help:contacts_dnd.field__zone__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "Street 2..."
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "Street..."
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__activity_exception_decoration
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__activity_exception_decoration
+#: model:ir.model.fields,help:contacts_dnd.field__locality__activity_exception_decoration
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__activity_exception_decoration
+#: model:ir.model.fields,help:contacts_dnd.field__zone__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "Website"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__website_message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__jobs__website_message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__website_message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__website_message_ids
+#: model:ir.model.fields,field_description:contacts_dnd.field__zone__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,help:contacts_dnd.field__commune__website_message_ids
+#: model:ir.model.fields,help:contacts_dnd.field__jobs__website_message_ids
+#: model:ir.model.fields,help:contacts_dnd.field__locality__website_message_ids
+#: model:ir.model.fields,help:contacts_dnd.field__wilaya__website_message_ids
+#: model:ir.model.fields,help:contacts_dnd.field__zone__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model,name:contacts_dnd.model__wilaya
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__wilaya_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__wilaya_id
+#: model:ir.model.fields,field_description:contacts_dnd.field__wilaya__name
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__wilaya_id
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__wilaya_id
+#: model:ir.ui.menu,name:contacts_dnd.wilaya_menu_item
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.contacts_commune_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_search
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.res_locality_form
+msgid "Wilaya"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.actions.act_window,name:contacts_dnd.action_wilaya_tree
+msgid "Wilaya Action Tree"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__locality__wilaya_name
+msgid "Wilaya Name"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "ZIP"
+msgstr ""
+
+#. module: contacts_dnd
+#: model:ir.model.fields,field_description:contacts_dnd.field__commune__zone
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_partner__zone
+#: model:ir.model.fields,field_description:contacts_dnd.field_res_users__zone
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.contacts_commune_form
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_search
+msgid "Zone"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "e.g. \"B2B\", \"VIP\", \"Consulting\", ..."
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "e.g. Monsieur"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "e.g. Sales Director"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "e.g. https://www.2a-medical.com"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_tree
+msgid "wilaya"
+msgstr ""
+
+#. module: contacts_dnd
+#: model_terms:ir.ui.view,arch_db:contacts_dnd.new_field_view_partner_form
+msgid "zone"
+msgstr ""

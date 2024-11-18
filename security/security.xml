@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+        <!-- categorie settings -->
+        <record id="masterData_manager_group"
+            model="res.groups">
+            <field name="name">Master Data Manager - Contact</field>
+            <field name="category_id"
+                ref="base.module_category_sales" />
+        </record>
+
+        <!-- groups -->
+        <record id="group_salesperson_access"
+            model="res.groups">
+            <field name="name">Salesperson Restricted Access</field>
+            <field name="category_id"
+                ref="base.module_category_sales" />
+        </record>
+
+        <!-- groups -->
+        <record id="group_salesperson_tesam_access"
+            model="res.groups">
+            <field name="name">Salesperson team Restricted Access</field>
+            <field name="category_id"
+                ref="base.module_category_sales" />
+        </record>
+
+        <!-- Define the Record Rule -->
+        <record id="rule_salesperson_own_customers_only"
+            model="ir.rule">
+            <field name="name">Salesperson - Current Customers</field>
+            <field name="model_id"
+                ref="base.model_res_partner" />
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups"
+                eval="[(4, ref('contacts_dnd.group_salesperson_access'))]" />
+            <field name="perm_read"
+                eval="True" />
+            <field name="perm_write"
+                eval="True" />
+            <field name="perm_create"
+                eval="False" />
+            <field name="perm_unlink"
+                eval="False" />
+        </record>
+
+        <record id="rule_team_leader_own_customers_only"
+            model="ir.rule">
+            <field name="name">CRM Team - View team CRM Only</field>
+            <field name="model_id"
+                ref="base.model_res_partner" />
+            <field name="domain_force">[('team_id', '=', user.sale_team_id.id)]</field>
+            <!-- <field name="domain_force">['|',("customer_rank", "!=", 0),  ('user_id', '=', user.id), ('team_id.user_id', '=', user.id)]</field> -->
+
+
+            <!-- ['|',('user_id', '=', user.id),'&',('user_id', '!=', user.id),('team_id', '=', user.sale_team_id.id)] -->
+            <field name="groups"
+                eval="[Command.link(ref('contacts_dnd.group_salesperson_tesam_access'))]" />
+
+            <!-- <field name="groups" eval="[(4, ref('contacts_dnd.group_salesperson_tesam_access'))]" /> -->
+            <field name="perm_read"
+                eval="True" />
+            <field name="perm_write"
+                eval="True" />
+            <field name="perm_create"
+                eval="True" />
+            <field name="perm_unlink"
+                eval="False" />
+        </record>
+
+        <!-- <record id="rule_user_read_access"
+            model="ir.rule">
+            <field name="name">Read Access to Users</field>
+            <field name="model_id"
+                ref="base.model_res_users" />
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read"
+                eval="True" />
+            <field name="perm_write"
+                eval="False" />
+            <field name="perm_create"
+                eval="False" />
+            <field name="perm_unlink"
+                eval="False" />
+            <field name="groups"
+                ref="base.group_user" />
+        </record> -->
+
+        <record id="master_data_manager_rule"
+            model="ir.rule">
+            <field name="name">Master Data Manager</field>
+            <field name="model_id"
+                ref="base.model_res_partner" />
+            <field name="domain_force">[]</field>
+            <field name="groups"
+                eval="[(4, ref('contacts_dnd.masterData_manager_group'))]" />
+            <field name="perm_read"
+                eval="True" />
+            <field name="perm_write"
+                eval="True" />
+            <field name="perm_create"
+                eval="True" />
+            <field name="perm_unlink"
+                eval="True" />
+        </record>
+    </data>
+
+</odoo>
+
+<!-- 3 group
+group masterdata 
+read/write/create/delete
+groupesalesteam
+acceder a l'ensemble des contacts clients du saleteam courant/ read/write/create/delete
+idem pour crm
+idem pour sale order
+groupesalesmemebers
+acceder a l'ensemble des contacts clients du membre courant/ read/write/
+idem pour crm
+idem pour saleorder -->

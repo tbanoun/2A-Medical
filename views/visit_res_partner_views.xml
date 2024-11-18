@@ -1,0 +1,153 @@
+<odoo>
+    <record id="new_field_view_partner_form"
+        model="ir.ui.view">
+        <field name="name">new field view partner form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id"
+            ref="base.view_partner_form" />
+        <field name="arch"
+            type="xml">
+            <xpath expr="//div[@class='o_address_format']/ancestor::group[1]"
+                position="replace">
+                <!-- <div class="row"> -->
+                <field name="city"
+                    invisible="1" />
+                <field name="state_id"
+                    invisible="1" />
+                <field name="type"
+                    invisible="1" />
+                <field name="street"
+                    invisible="1" />
+                <field name="street2"
+                    invisible="1" />
+                <field name="lang"
+                    invisible="1" />
+                <group name="name">
+                    <div class="oe_title">
+                        <h2>
+                            <strong>
+                                <field name="ref"
+                                    nolabel="1" />
+                            </strong>
+                        </h2>
+                    </div>
+                </group>
+                <!-- afficher les nouveaux champs -->
+                <group name="name"
+                    col="2">
+                    <group name="address"
+                        string="Address">
+                        <field name="country_id"
+                            placeholder="Country"
+                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+
+                        <!-- <field name="street" placeholder="Street..." class="o_address_street oe_inline" readonly="type == 'contact' and parent_id" />
+
+                    <field name="street2" placeholder="Street 2..." class="o_address_street oe_inline" readonly="type == 'contact' and parent_id" /> -->
+
+                        <field name="wilaya_id"
+                            placeholder="Wilaya"
+                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+
+                    </group>
+
+                    <group col="2"
+                        string="Address2">
+
+                        <field name="commune_id"
+                            placeholder="Commune"
+                            class="o_address_commune"
+                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+
+                        <field name="locality_id"
+                            placeholder="Localité"
+                            class="o_address_locality"
+                            options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+
+                    </group>
+                </group>
+                <group >
+                    <div style="display: flex; flex-wrap: nowrap; width: 100%;">
+                        <div style="flex:1;min-width: 200px; flex-grow: 1;">
+                            <field name="zone"
+                                nolabel="1"
+                                placeholder="zone"
+                                class="o_address_zone"
+                                readonly="1" />
+                        </div>
+                        <div style="flex:1;min-width: 200px; flex-grow: 1;">
+                            <field name="zip"
+                                nolabel="1"
+                                placeholder="ZIP"
+                                class="o_address_zip"
+                                readonly="1" />
+                        </div>
+                    </div>
+                </group>
+                <!-- </div> -->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="new_field_view_partner_search"
+        model="ir.ui.view">
+        <field name="name">new field view partner search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+            ref="base.view_res_partner_filter" />
+        <field name="arch"
+            type="xml">
+            <xpath expr="//group[@name='group_by']"
+                position="after">
+                <field name="wilaya_id" />
+                <field name="commune_id" />
+                <field name="locality_id" />
+                <field name="zone" />
+
+                <group expand="0"
+                    name="group_by"
+                    string="Group By">
+                    <filter name="wilaya_id"
+                        string="Wilaya"
+                        domain="[]"
+                        context="{'group_by' : 'wilaya_id'}" />
+                    <filter name="commune_id"
+                        string="Commune"
+                        domain="[]"
+                        context="{'group_by' : 'commune_id'}" />
+                    <filter name="locality_id"
+                        string="Locality"
+                        domain="[]"
+                        context="{'group_by' : 'locality_id'}" />
+                    <filter name="zone"
+                        string="Zone"
+                        domain="[]"
+                        context="{'group_by' : 'zone'}" />
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+    <!-- <record id="new_field_view_partner_tree"
+        model="ir.ui.view">
+        <field name="name">contacts custom tree</field>
+        <field name="model">res.partner</field>
+        <field name="type">tree</field>
+
+        <field name="inherit_id"
+            ref="base.view_partner_tree" />
+        <field name="arch"
+            type="xml">
+            <field name="city"
+                invisible="1" />
+
+            <xpath expr="//tree/field[@name='country_id']"
+                position="after">
+                <field name="wilaya_id"
+                    string="wilaya"
+                    column_invisible="True" />
+            </xpath>
+        </field>
+    </record> -->
+</odoo>
