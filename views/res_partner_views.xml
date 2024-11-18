@@ -268,120 +268,21 @@
             <xpath expr="//page[@name='internal_notes']"
                    position="after">
                 <page name="parrainage" string="Parrainage">
-                    <field name="sponsorship" mode="kanban"
-                           context="{'default_parent_id': id, 'default_user_id': user_id}">
-                        <kanban>
-                            <field name="id"/>
-                            <field name="color"/>
-                            <field name="name"/>
-                            <field name="title"/>
-                            <field name="type"/>
-                            <field name="email"/>
-                            <field name="parent_id"/>
-                            <field name="is_company"/>
-                            <field name="function"/>
-                            <field name="phone"/>
-                            <field name="street"/>
-                            <field name="street2"/>
-                            <field name="zip"/>
-                            <field name="city"/>
-                            <field name="country_id"/>
-                            <field name="mobile"/>
-                            <field name="state_id"/>
-                            <field name="image_128"/>
-                            <field name="avatar_128"/>
-                            <field name="lang"/>
-                            <field name="comment"/>
-                            <field name="display_name"/>
-                            <templates>
-                                <t t-name="kanban-box">
-                                    <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
-                                    <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
-                                        <div class="o_kanban_image">
-                                            <img alt="Contact image"
-                                                 t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
-                                        </div>
-                                        <div class="oe_kanban_details">
-                                            <field name="name"/>
-                                            <div t-if="record.function.raw_value">
-                                                <field name="function"/>
-                                            </div>
-                                            <div t-if="record.email.raw_value">
-                                                <field name="email" widget="email"/>
-                                            </div>
-                                            <div t-if="record.type.raw_value != 'contact'">
-                                                <div>
-                                                    <field name="zip"/>
-                                                    <t t-if="record.city"></t>
-                                                    <field name="city"/>
-                                                </div>
-                                                <field t-if="record.state_id.raw_value" name="state_id"/>
-                                                <t t-if="record.country_id"></t>
-                                                <field name="country_id"/>
-                                            </div>
-                                            <div t-if="record.phone.raw_value">Phone:
-                                                <t t-esc="record.phone.value"/>
-                                            </div>
-                                            <div t-if="record.mobile.raw_value">Mobile:
-                                                <t t-esc="record.mobile.value"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </t>
-                            </templates>
-                        </kanban>
-                        <form string="Contact / Address">
-                            <sheet>
-                                <field name="type" required="1" invisible="1" widget="radio"
-                                       options="{'horizontal': true}"/>
-                                <field name="parent_id" invisible="1"/>
-                                <group>
-                                    <group>
-                                        <field name="partner" string="Contact Name" required="type == 'contact'"/>
-                                        <field name="title" options="{'no_open': True}" readonly="1"
-                                               placeholder="e.g. Mr."
-                                               invisible="type != 'contact'"/>
-                                        <field name="function" placeholder="e.g. Sales Director"
-                                               invisible="type != 'contact'" readonly="1"/>
-                                        <label for="street" string="Address" invisible="type == 'contact'"/>
-                                        <div invisible="type == 'contact'">
-                                            <div class="o_address_format" name="div_address">
-                                                <field name="street" readonly="1" placeholder="Street..."
-                                                       class="o_address_street"/>
-                                                <field name="street2" readonly="1" placeholder="Street 2..."
-                                                       class="o_address_street"/>
-                                                <field name="city" placeholder="City" readonly="1"
-                                                       class="o_address_city"/>
-                                                <field name="state_id" class="o_address_state" readonly=""
-                                                       placeholder="State"
-                                                       options="{'no_open': True, 'no_quick_create': True}"
-                                                       context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
-                                                <field name="zip" placeholder="ZIP" class="o_address_zip" readonly="1"/>
-                                                <field name="country_id" placeholder="Country" class="o_address_country"
-                                                       options='{"no_open": True, "no_create": True}' readonly="1"/>
-                                            </div>
-                                        </div>
-                                    </group>
-                                    <group>
-                                        <field name="email" widget="email" readonly="1"/>
-                                        <field name="phone" widget="phone" readonly="1"/>
-                                        <field name="mobile" widget="phone" readonly="1"/>
-                                        <field name="company_id" invisible="1" readonly="1"/>
-                                    </group>
-                                </group>
-                                <group>
-                                    <field name="comment" placeholder="Internal notes..." nolabel="1" colspan="2"/>
-                                </group>
-                                <field name="lang" invisible="True"/>
-                                <field name="user_id" invisible="True"/>
-                            </sheet>
-                            <footer>
-                                <button type="object" name="addContactSponsorship" class="btn btn-primary">Ajouter
-                                </button>
-                                <button special="cancel" class="btn btn-info">Ignorer</button>
-                            </footer>
-                        </form>
-                    </field>
+                    <span class="oe_kanban_list_many2many">
+                        <field name="sponsorship">
+                            <tree>
+                                <field name="name" string="Nom et prénom"/>
+                                <field name="title"/>
+                                <field name="function_job"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="country_id"/>
+                                <field name="wilaya_id"/>
+                                <field name="commune_id"/>
+                                <field name="zone"/>
+                            </tree>
+                        </field>
+                    </span>
                 </page>
             </xpath>
 

@@ -12,12 +12,25 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     ref = fields.Char(string="Code Tiers", default="New", readonly=True)
-    sponsorship = fields.One2many('res.partner', 'parent_id', string='Parrainage')
+    parrinage_id = fields.Many2one('res.partner', string='Related Company', index=True)
+    sponsorship = fields.Many2many('res.partner', 'res_partner_sponsorship_rel', 'parrinage_id',  string='Parrainage')
     partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
 
     def addContactSponsorship(self):
-        print(self.partner)
+        ids = self.parrinage_id.sponsorship.ids
+        print(f"\n\n Ids => {ids} \n\n")
+        print(f"\n\n id => {self.id} \n\n")
+        ids.append(self.id)
+        for id in ids:
+            pass
+
+        self.sudo().write({
+            'sponsorship': [(4, 0, [ids])]
+        }
+        )
+
+
     # get parinage information
     @api.onchange('partner')
     def onSelectContactParrinage(self):
@@ -36,7 +49,6 @@ class ResPartner(models.Model):
         self.state_id = self.partner.state_id.id
         self.zip = self.partner.zip
 
-
     @api.model
     def update_presence_status(self, status):
         try:
@@ -50,7 +62,6 @@ class ResPartner(models.Model):
         # Si un dictionnaire unique est passé, on le transforme en liste
         if isinstance(vals_list, dict):
             vals_list = [vals_list]
-
         # Boucle sur chaque dictionnaire dans vals_list
         for vals in vals_list:
             # Vérifie que chaque élément est bien un dictionnaire
@@ -199,7 +210,7 @@ class ResPartner(models.Model):
     def _get_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-            [("is_company", "=", self.is_company)]
+                [("is_company", "=", self.is_company)]
         ):
             selection.append(("%s" % emp.id, "%s" % emp.description))
         return selection
@@ -213,7 +224,7 @@ class ResPartner(models.Model):
     def _get_default_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-            [("is_company", "=", True)]  # type: ignore
+                [("is_company", "=", True)]  # type: ignore
         ):
             selection.append(("%s" % emp.id, "%s" % emp.description))
         return selection
@@ -232,7 +243,7 @@ class ResPartner(models.Model):
     def _get_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-            [("is_company", "=", self.is_company)]
+                [("is_company", "=", self.is_company)]
         ):
             selection += [("%s" % emp.id, "%s" % emp.description)]
         return selection
