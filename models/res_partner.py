@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from requests.compat import basestring
 
 from odoo import models, fields, api, _
 from psycopg2 import errors
@@ -11,8 +12,30 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     ref = fields.Char(string="Code Tiers", default="New", readonly=True)
-
+    sponsorship = fields.One2many('res.partner', 'parent_id', string='Parrainage')
+    partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
+
+    def addContactSponsorship(self):
+        print(self.partner)
+    # get parinage information
+    @api.onchange('partner')
+    def onSelectContactParrinage(self):
+        self.image_1920 = self.partner.image_1920
+        self.avatar_128 = self.partner.avatar_128
+        self.email = self.partner.email
+        self.name = self.partner.name
+        self.function = self.partner.function_job
+        self.title = self.partner.title.id
+        self.phone = self.partner.phone
+        self.mobile = self.partner.mobile
+        self.country_id = self.partner.country_id.id
+        self.street = self.partner.street
+        self.street2 = self.partner.street2
+        self.city = self.partner.city
+        self.state_id = self.partner.state_id.id
+        self.zip = self.partner.zip
+
 
     @api.model
     def update_presence_status(self, status):
@@ -43,7 +66,7 @@ class ResPartner(models.Model):
                     )
 
                 # Convertir le nom en majuscules s'il est présent
-                if "name" in vals:
+                if "name" in vals and isinstance(vals['name'], basestring):
                     vals["name"] = vals["name"].upper()
 
         # Appeler la méthode create parent
