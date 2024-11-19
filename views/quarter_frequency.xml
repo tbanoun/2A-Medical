@@ -10,6 +10,7 @@
                     <field name="name" readonly="1" string="Titre"/>
                     <field name="year" readonly="1" string="Années"/>
                     <field name="frequencyNumber" string="Nombre de fréquence"/>
+                    <field name="code_type_freq" string="Type de fréquence"/>
                     <field name="partner_id" readonly="1" optional="hide" string="Contact"/>
                 </tree>
             </field>
@@ -40,7 +41,8 @@
                             <group>
                                 <label for="partner_id"
                                        string="Contact"/>
-                                <field name="partner_id" readonly="1" optional="hide"/>
+                                <field name="partner_id" readonly="1"/>
+                                <field name="code_type_freq" string="Type de fréquence" readonly="0"/>
                             </group>
                         </group>
                     </sheet>
