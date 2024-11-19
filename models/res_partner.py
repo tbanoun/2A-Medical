@@ -5,6 +5,7 @@ from odoo import models, fields, api, _
 from psycopg2 import errors
 from odoo.exceptions import UserError
 from odoo.exceptions import AccessError
+from datetime import datetime
 
 
 class ResPartner(models.Model):
@@ -343,13 +344,29 @@ class ResPartner(models.Model):
     # line_id = fields.One2many("res.partner.frequency.line", "customer_id")
 
     def action_open_frequency(self):
+        self._createRecordQuarter(self.id)
         action = self.env['ir.actions.act_window']._for_xml_id(
             'contacts_dnd.action_view_open_frequency')
         action['context'] = {'default_partner_id': self.id}
         action["domain"] = [('partner_id', '=', self.id)]
         return action
 
-
+    def _createRecordQuarter(self, partner_id):
+        year = datetime.now().year
+        records = self.env['quarter.frequency'].sudo().search([
+            ('partner_id', '=', partner_id),
+            ('year', '=', year)
+        ])
+        if records: return True
+        for index in range(1, 5):
+            vals = {
+                "name": f"Trimestre {index}",
+                "year": year,
+                "frequencyNumber": 0,
+                "partner_id": partner_id
+            }
+            self.env['quarter.frequency'].sudo().create(vals)
+        return True
 
 # class FrequencyLine(models.Model):
 #     _name = "res.partner.frequency.line"
