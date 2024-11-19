@@ -109,6 +109,27 @@
                     <field name="phone" string="Téléphone fixe/mobile"
                            filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"/>
                     <field name="tag_ids" string="Étiquettes"/>
+                    <field name="user_id" string="Vendeur"/>
+                    <field name="wilaya_id"/>
+                    <field name="commune_id"/>
+                    <field name="locality_id"/>
+                    <field name="zone"/>
+                    <field name="code_potential"/>
+                    <field name="code_adoption"/>
+                    <field name="code_solvency"/>
+                    <field name="code_leader"/>
+                    <field name="code_category"/>
+                    <field name="code_sector"/>
+                    <field name="code_typologie"/>
+                    <separator/>
+                    <filter string="Mon pipeline" name="assigned_to_me"
+                            domain="[('user_id', '=', uid)]"
+                            help="Opportunities that are assigned to me"/>
+                    <filter string="Non attribué" name="unassigned"
+                            domain="[('user_id', '=', False)]" help="No salesperson"/>
+                    <filter string="Opportunités ouvertes" name="open_opportunities"
+                            domain="[('probability', '&lt;', 100), ('type', '=', 'opportunity'), ('active', '=', True)]"
+                            help="Open Opportunities"/>
                     <separator/>
                     <filter string="Individuals" name="type_person" domain="[('type_person', '=', False)]"/>
                     <filter string="Companies" name="type_company" domain="[('type_person', '=', True)]"/>
@@ -117,23 +138,60 @@
                         <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </separator>
 
+                    <group expand="0"
+                           string="Potentiel">
+                        <filter name="filter_Potentiel1"
+                                string="Potentiel Fort"
+                                domain="[('code_potential', '=', '1')]"/>
+                        <filter name="filter_Potentiel2"
+                                string="Potentiel Moyen"
+                                domain="[('code_potential', '=', '2')]"/>
+                        <filter name="filter_Potentiel3"
+                                string="Potentiel Faible"
+                                domain="[('code_potential', '=', '3')]"/>
+                        <filter name="filter_Adoption1"
+                                string="Adoption Champion"
+                                domain="[('code_adoption', '=', '4')]"/>
+                        <filter name="filter_Adoption2"
+                                string="Adoption Régulier"
+                                domain="[('code_adoption', '=', '3')]"/>
+                        <filter name="filter_Adoption3"
+                                string="Adoption Débutant"
+                                domain="[('code_adoption', '=', '2')]"/>
+                    </group>
+                    <filter string="Properties" name="group_by_lead_properties"
+                            context="{'group_by':'lead_properties'}"/>
+
+                    <!-- group by-->
+                    <group expand="0"
+                           name="group_by"
+                           string="Group By">
+                         <filter name="salesperson"
+                                 string="Vendeur"
+                                 domain="[]"
+                                 context="{'group_by' : 'user_id'}"/>
+                        <filter name="group_company" string="Contact/société" context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_country" string="Country" context="{'group_by': 'country_id'}"/>
+                         <separator/>
+                        <filter name="wilaya_id"
+                                string="Wilaya"
+                                domain="[]"
+                                context="{'group_by' : 'wilaya_id'}"/>
+                        <filter name="commune_id"
+                                string="Commune"
+                                domain="[]"
+                                context="{'group_by' : 'commune_id'}"/>
+                        <filter name="locality_id"
+                                string="Locality"
+                                domain="[]"
+                                context="{'group_by' : 'locality_id'}"/>
+                        <filter name="zone"
+                                string="Zone"
+                                domain="[]"
+                                context="{'group_by' : 'zone'}"/>
+                    </group>
                 </search>
             </xpath>
-
-
-            <!--                    <field name="category_id" string="Tag" operator="child_of"/>-->
-            <!--                    <field name="user_id"/>-->
-            <!--                    <separator/>-->
-            <!--                    <filter string="Individuals" name="type_person" domain="[('is_company', '=', False)]"/>-->
-            <!--                    <filter string="Companies" name="type_company" domain="[('is_company', '=', True)]"/>-->
-            <!--                    <separator/>-->
-            <!--                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>-->
-            <!--                    <separator/>-->
-            <!--                    <group expand="0" name="group_by" string="Group By">-->
-            <!--                        <filter name="salesperson" string="Salesperson" domain="[]" context="{'group_by' : 'user_id'}" />-->
-            <!--                        <filter name="group_company" string="Company" context="{'group_by': 'parent_id'}"/>-->
-            <!--                        <filter name="group_country" string="Country" context="{'group_by': 'country_id'}"/>-->
-            <!--                    </group>-->
         </field>
     </record>
 

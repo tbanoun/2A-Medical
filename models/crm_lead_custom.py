@@ -118,6 +118,17 @@ class Crmlead(models.Model):
     typo_prescription = fields.Html(string="Typologie de prescription")
 
     type_person = fields.Boolean(related="partner_id.is_company")
+    wilaya_id = fields.Many2one('customer.wilaya', related="partner_id.wilaya_id", store=True)
+    commune_id = fields.Many2one('customer.commune', related="partner_id.commune_id", store=True)
+    locality_id = fields.Many2one('customer.locality', related="partner_id.locality_id", store=True)
+    zone = fields.Char(related="partner_id.zone", store=True)
+    code_potential = fields.Selection(related="partner_id.code_potential")
+    code_adoption = fields.Selection(related="partner_id.code_adoption")
+    code_solvency = fields.Selection(related="partner_id.code_solvency")
+    code_sector = fields.Selection(related="partner_id.code_sector")
+    code_leader = fields.Many2many('customer.leader', related="partner_id.code_leader")
+    code_category = fields.Many2one('customer.category', related="partner_id.code_category")
+    code_typologie = fields.Many2many('customer.typologie', related="partner_id.code_typologie")
 
     @api.depends("events_id")
     def _compute_event_dates(self):
