@@ -117,6 +117,8 @@ class Crmlead(models.Model):
     events_dates = fields.Char(string="Event Dates", compute="_compute_event_dates")
     typo_prescription = fields.Html(string="Typologie de prescription")
 
+    type_person = fields.Boolean(related="partner_id.is_company")
+
     @api.depends("events_id")
     def _compute_event_dates(self):
         for record in self:

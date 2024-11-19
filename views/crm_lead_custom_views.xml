@@ -1,86 +1,139 @@
 <odoo>
     <record id="view_crm_lead_form_inherited"
-        model="ir.ui.view">
+            model="ir.ui.view">
         <field name="name">crm.lead.form.inherited</field>
         <field name="model">crm.lead</field>
         <field name="type">form</field>
         <field name="inherit_id"
-            ref="crm.crm_lead_view_form" />
+               ref="crm.crm_lead_view_form"/>
         <field name="arch"
-            type="xml">
+               type="xml">
             <field name="probability"
-                invisible="1" />
+                   invisible="1"/>
             <xpath expr="//group[@name='opportunity_partner']"
-                position="inside">
+                   position="inside">
 
-                <field name="zone_partner" />
-                <field name="visite_date_from" />
-                <field name="visite_date_to" />
+                <field name="zone_partner"/>
+                <field name="visite_date_from"/>
+                <field name="visite_date_to"/>
                 <field name="user_id_duo"
-                    widget="many2many_tags" />
+                       widget="many2many_tags"/>
             </xpath>
             <!-- <xpath expr="//header" position="inside">
                 <button name="action_create_lead" type="object" string="Créer Nouvelle Opportunité" class="btn-primary" invisible="0" />
             </xpath> -->
             <xpath expr="//page[@name='internal_notes']"
-                position="before">
+                   position="before">
                 <page id="details_visite1"
-                    string="Visite | Détails">
+                      string="Visite | Détails">
                     <group col="2">
                         <group name="group_1"
-                            string="Infos">
-                            <field name="message_fort" />
-                            <field name="point_accord" />
-                            <field name="besoin_particulier" />
+                               string="Infos">
+                            <field name="message_fort"/>
+                            <field name="point_accord"/>
+                            <field name="besoin_particulier"/>
                         </group>
                         <group name="group_2"
-                            string="Objectif de la viste | Objection">
+                               string="Objectif de la viste | Objection">
                             <field name="code_visit_next"
-                                widget="html" />
+                                   widget="html"/>
                             <field name="code_visite_objection"
-                                widget="html" />
+                                   widget="html"/>
                             <field name="typo_prescription"
-                                widget="html" />
+                                   widget="html"/>
                         </group>
                     </group>
                 </page>
 
                 <page id="details_visite2"
-                    string="Produits | Remis">
+                      string="Produits | Remis">
                     <group col="2">
                         <group name="group_3"
-                            string="Produits | Echantillions">
+                               string="Produits | Echantillions">
                             <field name="product_presented"
-                                widget="many2many_tags" />
+                                   widget="many2many_tags"/>
                             <field name="product_echant"
-                                widget="many2many_tags" />
+                                   widget="many2many_tags"/>
                         </group>
                         <group name="group_4"
-                            string="Les remis">
+                               string="Les remis">
                             <field name="remis"
-                                widget="many2many_tags" />
+                                   widget="many2many_tags"/>
                             <field name="product_discount"
-                                widget="many2many_tags" />
+                                   widget="many2many_tags"/>
                         </group>
                     </group>
                 </page>
                 <page id="events_customer"
-                    string="Evenements">
+                      string="Evenements">
                     <group col="2">
                         <group name="group_3"
-                            string="Evènements">
+                               string="Evènements">
                             <field name="events_id"
-                                widget="many2many_tags" />
-                            <field name="events_dates" />
+                                   widget="many2many_tags"/>
+                            <field name="events_dates"/>
                         </group>
                         <group name="group_4"
-                            string="Invitations">
+                               string="Invitations">
                             <field name="invitation"
-                                widget="html" />
+                                   widget="html"/>
                         </group>
                     </group>
                 </page>
             </xpath>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="crm_opportunity_partner_filter">
+        <field name="name">crm.opportunity.partner.filter.assigned</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="replace">
+                <search string="Search Opportunities">
+                    <field name="name" string="Nom" filter_domain="[
+                        '|', '|', '|', '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_name', 'ilike', self),
+                        ('email_from', 'ilike', self),
+                        ('name', 'ilike', self),
+                        ('contact_name', 'ilike', self)]"/>
+                    <field name="partner_id" operator="child_of" string="Customer" filter_domain="[
+                        '|', '|', '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_name', 'ilike', self),
+                        ('email_from', 'ilike', self),
+                        ('contact_name', 'ilike', self)]"/>
+                    <field name="email_from" filter_domain="[('email_from', 'ilike', self)]"/>
+                    <field name="phone" string="Téléphone fixe/mobile"
+                           filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"/>
+                    <field name="tag_ids" string="Étiquettes"/>
+                    <separator/>
+                    <filter string="Individuals" name="type_person" domain="[('type_person', '=', False)]"/>
+                    <filter string="Companies" name="type_company" domain="[('type_person', '=', True)]"/>
+                    <separator/>
+                    <separator>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                    </separator>
+
+                </search>
+            </xpath>
+
+
+            <!--                    <field name="category_id" string="Tag" operator="child_of"/>-->
+            <!--                    <field name="user_id"/>-->
+            <!--                    <separator/>-->
+            <!--                    <filter string="Individuals" name="type_person" domain="[('is_company', '=', False)]"/>-->
+            <!--                    <filter string="Companies" name="type_company" domain="[('is_company', '=', True)]"/>-->
+            <!--                    <separator/>-->
+            <!--                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>-->
+            <!--                    <separator/>-->
+            <!--                    <group expand="0" name="group_by" string="Group By">-->
+            <!--                        <filter name="salesperson" string="Salesperson" domain="[]" context="{'group_by' : 'user_id'}" />-->
+            <!--                        <filter name="group_company" string="Company" context="{'group_by': 'parent_id'}"/>-->
+            <!--                        <filter name="group_country" string="Country" context="{'group_by': 'country_id'}"/>-->
+            <!--                    </group>-->
         </field>
     </record>
 
@@ -116,15 +169,15 @@
     </record> -->
 
     <record id="view_crm_lead_calendar_inherited"
-        model="ir.ui.view">
+            model="ir.ui.view">
         <field name="name">crm.lead.calendar.inherit</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id"
-            ref="crm.crm_case_calendar_view_leads" />
+               ref="crm.crm_case_calendar_view_leads"/>
         <field name="arch"
-            type="xml">
+               type="xml">
             <xpath expr="//calendar"
-                position="attributes">
+                   position="attributes">
                 <attribute name="color">partner_id</attribute>
                 <attribute name="date_start">visite_date_from</attribute>
             </xpath>
