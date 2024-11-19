@@ -27,3 +27,4 @@ from . import crm_lead_custom
 from . import crm_visit_remis
 from . import crm_visit_product
 # from . import sale_order
+from . import event_registration

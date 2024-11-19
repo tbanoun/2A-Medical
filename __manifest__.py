@@ -60,6 +60,7 @@
         "views/zone_views.xml",
         "views/res_partner_views.xml",
         "views/crm_lead_custom_views.xml",
+        "views/event_registration.xml",
     ],
     "assets": {
         "web.assets_backend": [

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--form view-->
+        <record id="view_form_event_registration"
+                model="ir.ui.view">
+            <field name="name">event.registration</field>
+            <field name="model">event.registration</field>
+            <field name="type">form</field>
+            <field name="inherit_id"
+                   ref="event.view_event_registration_form"/>
+            <field name="arch"
+                   type="xml">
+                 <xpath expr="//field[@name='partner_id']"
+                   position="replace">
+                     <field name="resrvedBy" widget="many2one_avatar_user"/>
+            </xpath>
+            </field>
+        </record>
+
+        <!--list view-->
+         <record id="view_tree_event_registration"
+                model="ir.ui.view">
+            <field name="name">event.registration</field>
+            <field name="model">event.registration</field>
+            <field name="type">tree</field>
+            <field name="inherit_id"
+                   ref="event.view_event_registration_tree"/>
+            <field name="arch"
+                   type="xml">
+                 <xpath expr="//field[@name='partner_id']"
+                   position="replace">
+                     <field name="resrvedBy" widget="many2one_avatar_user" optional="hide"/>
+            </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
