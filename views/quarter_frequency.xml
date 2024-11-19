@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--tree view-->
+        <record id="view_tree_frequency" model="ir.ui.view">
+            <field name="name">Frequency</field>
+            <field name="model">quarter.frequency</field>
+            <field name="arch" type="xml">
+                <tree string="Stages" duplicate="0" create="0" delete="0" edit="1">
+                    <field name="name" readonly="1" string="Titre"/>
+                    <field name="year" readonly="1" string="Années"/>
+                    <field name="frequencyNumber" string="Nombre de fréquence"/>
+                    <field name="partner_id" readonly="1" optional="hide" string="Contact"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--form view-->
+        <record id="view_form_frequency"
+                model="ir.ui.view">
+            <field name="name">Frequency</field>
+            <field name="model">quarter.frequency</field>
+            <field name="arch"
+                   type="xml">
+                <form duplicate="0" create="0" delete="0" edit="1">
+                    <sheet>
+                        <div class="o_title">
+                            <h1>
+                                <field name="name" readonly="1" string="Titre"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="year"
+                                       readonly="1" string="Années"/>
+                                <separator/>
+                                <field name="frequencyNumber"
+                                       readonly="0" string="Nombre de fréquence"/>
+                            </group>
+                            <group>
+                                <label for="partner_id"
+                                       string="Contact"/>
+                                <field name="partner_id" readonly="1" optional="hide"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_open_frequency" model="ir.actions.act_window">
+            <field name="name">Frequency</field>
+            <field name="res_model">quarter.frequency</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tree_frequency"/>
+<!--            <field name="search_view_id" ref="view_window_action_search"/>-->
+            <field name="context">
+                {'form_view_ref':'contacts_dnd.view_form_frequency',
+                 'tree_view_ref':'contacts_dnd.view_tree_frequency'
+                }
+            </field>
+        </record>
+
+    </data>
+</odoo>

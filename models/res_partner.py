@@ -342,6 +342,14 @@ class ResPartner(models.Model):
     # # frequence de visite
     # line_id = fields.One2many("res.partner.frequency.line", "customer_id")
 
+    def action_open_frequency(self):
+        action = self.env['ir.actions.act_window']._for_xml_id(
+            'contacts_dnd.action_view_open_frequency')
+        action['context'] = {'default_partner_id': self.id}
+        action["domain"] = [('partner_id', '=', self.id)]
+        return action
+
+
 
 # class FrequencyLine(models.Model):
 #     _name = "res.partner.frequency.line"
