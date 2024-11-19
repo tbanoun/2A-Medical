@@ -189,6 +189,25 @@
                                 string="Zone"
                                 domain="[]"
                                 context="{'group_by' : 'zone'}"/>
+                        <filter name="potentiel"
+                                string="Potentiel"
+                                domain="[]"
+                                context="{'group_by' : 'code_potential'}"/>
+                        <filter name="adoption"
+                                string="Adoption"
+                                domain="[]"
+                                context="{'group_by' : 'code_adoption'}"/>
+                        <filter name="solvency"
+                                string="Solvency"
+                                domain="[]"
+                                context="{'group_by' : 'code_solvency'}"/>
+                        <filter name="categorie"
+                                string="Categorie"
+                                domain="[]"
+                                context="{'group_by' : 'code_category'}"/>
+
+
+
                     </group>
                 </search>
             </xpath>
