@@ -39,10 +39,9 @@
                                        readonly="0" string="Nombre de fréquence"/>
                             </group>
                             <group>
-                                <label for="partner_id"
-                                       string="Contact"/>
                                 <field name="partner_id" readonly="1"/>
-                                <field name="code_type_freq" string="Type de fréquence" readonly="0"/>
+                                <separator/>
+                                <field required="1" name="code_type_freq" string="Type de fréquence" readonly="0"/>
                             </group>
                         </group>
                     </sheet>
