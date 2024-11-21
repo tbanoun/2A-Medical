@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='tag_ids']" position="after">
                    <field name="famille" string="Famille"/>
+                   <field name="budget" string="Budget" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 </xpath>
             </field>
         </record>
