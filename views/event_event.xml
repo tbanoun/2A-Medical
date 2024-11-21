@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='tag_ids']" position="after">
                    <field name="famille" string="Famille"/>
+                   <field name="company_currency_id" invisible="1"/>
                    <field name="budget" string="Budget" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 </xpath>
             </field>
@@ -23,7 +24,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//tree" position="inside">
                    <field name="famille" string="Famille" optional="hide"/>
-                   <field name="budget" string="Budget" widget="monetary" optional="hide"/>
+                    <field name="company_currency_id" invisible="1"/>
+                   <field name="budget" string="Budget" widget="monetary" optional="hide" options="{'currency_field': 'company_currency_id'}"/>
                 </xpath>
             </field>
         </record>
