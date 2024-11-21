@@ -106,7 +106,7 @@
                                col="2">
                             <group>
                                 <field name="phone"
-                                       widget="phone"/>
+                                       widget="phone" required="1"/>
                                 <field name="mobile"
                                        widget="phone"/>
                             </group>
