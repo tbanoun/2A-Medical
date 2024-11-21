@@ -19,9 +19,7 @@ class QuarterFrequency(models.Model):
 
 
     def _createCardCrmLead(self, id):
-        print("ok id:", id)
         record = self.env['quarter.frequency'].sudo().browse(id)
-        print("ok record:", record)
         if not record: return
         id = record.id
         crmLeadNewStage = self.env["crm.lead"].search([
@@ -57,7 +55,6 @@ class QuarterFrequency(models.Model):
                         "year": record.year
                     }
                 )
-                print("Create success !")
         return True
 
     def create(self, vals_list):

@@ -6,7 +6,7 @@
             <field name="name">Frequency</field>
             <field name="model">quarter.frequency</field>
             <field name="arch" type="xml">
-                <tree string="Stages" duplicate="0" create="0" delete="0" edit="1">
+                <tree string="Stages" duplicate="0" create="0" delete="0" edit="1" editable="bottom">
                     <field name="name" readonly="1" string="Titre"/>
                     <field name="year" readonly="1" string="Années"/>
                     <field name="frequencyNumber" string="Nombre de fréquence"/>
