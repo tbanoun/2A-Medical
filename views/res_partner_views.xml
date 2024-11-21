@@ -222,6 +222,10 @@
                                    widget="many2many_tags"
                                    options="{'no_create': True}"
                                    class="form-control"/>
+                            <field name='gamme_id'
+                                   widget="Many2one"
+                                   options="{'no_create': True}"
+                                   class="form-control"/>
                         </group>
                     </group>
                 </page>

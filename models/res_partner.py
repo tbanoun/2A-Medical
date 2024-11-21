@@ -17,7 +17,7 @@ class ResPartner(models.Model):
     sponsorship = fields.Many2many('res.partner', 'res_partner_sponsorship_rel', 'parrinage_id',  string='Parrainage')
     partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
-
+    gamme_id = fields.Many2one('product.gamme', string="Gamme de Produits")
     @api.model
     def update_presence_status(self, status):
         try:
