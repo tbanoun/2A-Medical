@@ -63,6 +63,7 @@
         "views/event_registration.xml",
         "views/quarter_frequency.xml",
         "views/event_event.xml",
+        "views/product_gamme.xml",
     ],
     "assets": {
         "web.assets_backend": [

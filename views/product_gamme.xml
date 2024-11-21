@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!--tree view-->
+        <record id="view_tree_product_gamme" model="ir.ui.view">
+            <field name="name">product.gamme</field>
+            <field name="model">product.gamme</field>
+            <field name="arch" type="xml">
+                <tree string="GAMME produit" editable="bottom">
+                    <field name="name" required="1" string="Nom"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_view_open_frequency" model="ir.actions.act_window">
+            <field name="name">Gamme produit</field>
+            <field name="res_model">product.gamme</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tree_product_gamme"/>
+            <field name="context">
+                'tree_view_ref':'contacts_dnd.view_tree_product_gamme'
+                }
+            </field>
+        </record>
+
+        <!--Menu de gamme produit sous le menu configuration-->
+        <menuitem id="customer_interest_menu"
+                  name="Gamme produit"
+                  parent="contacts_custom_menu_root"
+                  action="action_view_open_frequency"
+                  sequence="1"/>
+    </data>
+</odoo>

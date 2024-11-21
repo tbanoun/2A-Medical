@@ -55,6 +55,7 @@ access_crm_visit_remis,crm.visit.remis,model_crm_visit_remis,,1,1,1,1
 access_crm_visit_product,crm.visit.product,model_crm_visit_product,,1,1,1,0
 access_crm_visit_product,crm.visit.product,model_crm_visit_product,,1,1,1,1
 access_quarter_frequency,quarter.frequency,model_quarter_frequency,,1,1,1,1
+access_product_gamme,product.gamme,model_product_gamme,,1,1,1,1
 
 
 
