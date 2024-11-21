@@ -347,7 +347,10 @@ class ResPartner(models.Model):
         self._createRecordQuarter(self.id)
         action = self.env['ir.actions.act_window']._for_xml_id(
             'contacts_dnd.action_view_open_frequency')
-        action['context'] = {'default_partner_id': self.id}
+        action['context'] = {
+            'default_partner_id': self.id,
+            'search_default_group_by_lead_properties': True
+        }
         action["domain"] = [('partner_id', '=', self.id)]
         return action
 

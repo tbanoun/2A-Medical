@@ -54,15 +54,27 @@
             </field>
         </record>
 
+        <!--search view-->
+        <record model="ir.ui.view" id="frequency_group_by_filter">
+            <field name="name">quarter.frequency.search</field>
+            <field name="model">quarter.frequency</field>
+            <field name="arch" type="xml">
+                <search string="Search frequency">
+                    <filter string="Années" name="group_by_lead_properties"
+                            context="{'group_by':'year'}"/>
+                </search>
+            </field>
+        </record>
+
         <record id="action_view_open_frequency" model="ir.actions.act_window">
             <field name="name">Frequency</field>
             <field name="res_model">quarter.frequency</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_tree_frequency"/>
-<!--            <field name="search_view_id" ref="view_window_action_search"/>-->
+                        <field name="search_view_id" ref="frequency_group_by_filter"/>
             <field name="context">
                 {'form_view_ref':'contacts_dnd.view_form_frequency',
-                 'tree_view_ref':'contacts_dnd.view_tree_frequency'
+                'tree_view_ref':'contacts_dnd.view_tree_frequency'
                 }
             </field>
         </record>
