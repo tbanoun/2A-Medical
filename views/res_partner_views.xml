@@ -447,6 +447,9 @@
                 <field name="code_type_freq"
                        string="Frequency"
                        optional="show"/>
+                <field name="gamme_id"
+                       string="Gamme de produit"
+                       optional="hide"/>
             </xpath>
         </field>
     </record>
