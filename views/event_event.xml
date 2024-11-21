@@ -12,6 +12,7 @@
                    <field name="famille" string="Famille"/>
                    <field name="company_currency_id" invisible="1"/>
                    <field name="budget" string="Budget" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                   <field name="gamme_id" string="Gamme de produit" widget="Many2one" options="{'no_create': True}"/>
                 </xpath>
             </field>
         </record>
