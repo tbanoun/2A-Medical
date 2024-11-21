@@ -12,7 +12,7 @@ class QuarterFrequency(models.Model):
         return selection
 
     name = fields.Char("Trimestre")
-    year = fields.Integer("Années")
+    year = fields.Integer("Année")
     frequencyNumber = fields.Integer("Frequency number")
     partner_id = fields.Many2one("res.partner")
     code_type_freq = fields.Selection(_get_type_freq, string="Frequency")

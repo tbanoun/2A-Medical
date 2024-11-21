@@ -12,7 +12,7 @@ class Crmlead(models.Model):
             ("canceled", "Canceled"),
         ]
     )
-    year = fields.Integer("Années")
+    year = fields.Integer("Année")
     frequency = fields.Many2one('quarter.frequency')
     partner_id = fields.Many2one(
         "res.partner",
