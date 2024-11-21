@@ -62,6 +62,7 @@
         "views/crm_lead_custom_views.xml",
         "views/event_registration.xml",
         "views/quarter_frequency.xml",
+        "views/event_event.xml",
     ],
     "assets": {
         "web.assets_backend": [

@@ -29,3 +29,4 @@ from . import crm_visit_product
 # from . import sale_order
 from . import event_registration
 from . import quarter_frequency
+from . import evenet_event
