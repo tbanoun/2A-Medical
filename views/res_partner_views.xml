@@ -289,7 +289,7 @@
                    position="after">
                 <page name="parrainage" string="Parrainage">
                     <span class="oe_kanban_list_many2many">
-                        <field name="sponsorship">
+                        <field name="sponsorship" domain="[('id', '!=', id)]">
                             <tree>
                                 <field name="name" string="Nom et prénom"/>
                                 <field name="title"/>

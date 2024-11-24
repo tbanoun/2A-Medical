@@ -58,7 +58,7 @@ class QuarterFrequency(models.Model):
         return True
 
     def create(self, vals_list):
-        res = super(self, QuarterFrequency).create(vals_list)
+        res = super(QuarterFrequency, self).create(vals_list)
         if 'frequencyNumber' in vals_list and 'code_type_freq' in vals_list:
             self._createCardCrmLead(res.id)
         return res

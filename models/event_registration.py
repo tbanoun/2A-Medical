@@ -2,6 +2,7 @@ from odoo import models, api, fields
 
 class EventRegistration(models.Model):
     _inherit = 'event.registration'
+
     resrvedBy = fields.Many2one('hr.employee', string="Réservé par")
     partner_id = fields.Many2one("res.partner", string="Participant")
     sponsored_by = fields.Many2many('res.partner', string="Parrainer par", compute="getAllSponredPartner")

@@ -66,7 +66,7 @@
             </field>
         </record>
 
-        <record id="action_view_open_frequency" model="ir.actions.act_window">
+        <record id="action_view_open_frequency2" model="ir.actions.act_window">
             <field name="name">Frequency</field>
             <field name="res_model">quarter.frequency</field>
             <field name="view_mode">tree,form</field>
