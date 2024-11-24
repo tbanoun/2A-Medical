@@ -179,6 +179,11 @@
                                        readonly="1"/>
                             </group>
                         </group>
+                        <group>
+                            <!--Ajouter le champ sponsred by-->
+                            <field name="sponsored_by" readonly="1" widget="many2many_avatar_user"
+                                   string="Parrainer par"/>
+                        </group>
                     </group>
                 </group>
 

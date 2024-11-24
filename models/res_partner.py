@@ -13,11 +13,23 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     ref = fields.Char(string="Code Tiers", default="New", readonly=True)
+    sponsored_by = fields.Many2many('res.partner', string="Parrainer par", compute="getAllSponredPartner")
     parrinage_id = fields.Many2one('res.partner', string='Related Company', index=True)
     sponsorship = fields.Many2many('res.partner', 'res_partner_sponsorship_rel', 'parrinage_id',  string='Parrainage')
     partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
     gamme_id = fields.Many2one('product.gamme', string="Gamme de Produits")
+
+    def getAllSponredPartner(self):
+        for rec in self:
+            partner_ids = self.env['res.partner'].sudo().search([
+                ('sponsorship', 'in', [rec.id])
+            ])
+            if partner_ids:
+                rec.sponsored_by = partner_ids.ids
+            else:
+                rec.sponsored_by = []
+
     @api.model
     def update_presence_status(self, status):
         try:
