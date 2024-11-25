@@ -41,7 +41,14 @@ class ResPartner(models.Model):
 
     # incrementer ref
     def create(self, vals_list):
-        print("\n\n",vals_list,"\n\n")
+        if "phone" in vals_list:
+            phone = vals_list['phone']
+            partner = self.env['res.partner'].sudo().search([
+                ('phone', '=', phone)
+            ])
+            if partner: raise ValidationError(
+                                _('Erreur!, vous ne pouvez pas créer un contact avec un numéro de télephone'
+                                  'qui est déja utulisé par un autre!'))
         # Si un dictionnaire unique est passé, on le transforme en liste
         if isinstance(vals_list, dict):
             vals_list = [vals_list]
