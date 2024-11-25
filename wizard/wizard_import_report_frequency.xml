@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="wizard_import_xls_report_frequency">
+        <field name="name">Importer les fiches de fréquences</field>
+        <field name="model">file.xls</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <group>
+                            <field name="file_xls" required="1"/>
+                        </group>
+                    </div>
+                </div>
+                <footer>
+                    <button string="Importer" special="cancel" class="btn btn-primary"/>
+                    <button string="Annuler" special="cancel" class="btn btn-light"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

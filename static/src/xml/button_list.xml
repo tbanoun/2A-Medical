@@ -1,0 +1,7 @@
+<template id="button_partner.ListView.Buttons" name="partner List View Buttons">
+    <t t-name="button_partner.ListView.Buttons">
+        <button type="button" class="btn btn-success" style="width: 200px !important;" t-on-click="openWizardimportXlsFile">
+            Importer les fiches de fré..
+        </button>
+    </t>
+</template>

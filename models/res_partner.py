@@ -405,6 +405,12 @@ class ResPartner(models.Model):
             self.env['quarter.frequency'].sudo().create(vals)
         return True
 
+    def import_report_frequency(self):
+        """Open the timesheet view for the project"""
+        action = self.env['ir.actions.act_window']._for_xml_id(
+            'contacts_dnd.act_open_wizard_import_file_xls_frequency')
+        return action
+
     #create function to generate a files xls:
     def generate_report_frequency(self):
         active_ids = self.env.context.get('active_ids', [])
@@ -640,3 +646,8 @@ _sql_constraints = [
 # def unlink(self):
 #     res = super().unlink()
 #     return res
+
+class FrequencyFileXls(models.Model):
+    _name = "file.xls"
+
+    file_xls = fields.Binary("File xls")

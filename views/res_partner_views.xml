@@ -401,13 +401,25 @@
         </field>
     </record>
 
-    <record id="action_hello_world_action" model="ir.actions.server">
+    <record id="action_export_xls_file_frequency" model="ir.actions.server">
         <field name="name">Exporter les fiches de fréquences</field>
         <field name="model_id" ref="model_res_partner"/>
         <field name="binding_model_id" ref="model_res_partner"/>
         <field name="state">code</field>
+        <field name="sequence" eval="2"/>
         <field name="code">
             action = env['res.partner'].generate_report_frequency()
+        </field>
+    </record>
+
+    <record id="action_import_xls_file_frequency" model="ir.actions.server">
+        <field name="name">Importer les fiches de fréquences</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="state">code</field>
+        <field name="sequence" eval="2"/>
+        <field name="code">
+            action = env['res.partner'].import_report_frequency()
         </field>
     </record>
 
@@ -417,12 +429,14 @@
         <field name="name">contacts custom tree</field>
         <field name="model">res.partner</field>
         <field name="type">tree</field>
-
         <field name="inherit_id"
                ref="base.view_partner_tree"/>
         <field name="arch"
                type="xml">
-
+            <!--Add button tree view import the xls files-->
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">button_in_tree</attribute>
+            </xpath>
             <field name="city"
                    invisible="1"/>
 
@@ -482,39 +496,18 @@
         <field name="domain">[('user_id', '=', user.id)]</field>
     </record>
 
-    <!-- <record id="action_frequence_line_create" model="ir.actions.server">
-        <field name="name">Create Frence Line</field>
-        <field name="model_id" ref="contacts_dnd.model_res_partner" />
-        <field name="binding_model_id" ref="contacts_dnd.model_res_partner" />
-        <field name="state">code</field>
-        <field name="code">model.create_frequency()</field>
-    </record> -->
 
-    <!-- <menuitem id="contactscustom_menu_item" name="Locality" parent="contacts_custom_menu_root" action="action_contacts_inherit" sequence="20" /> -->
+    <!--heriter la vue kanban du res_partner-->
+    <record id="contact_partner_kanban_view" model="ir.ui.view">
+            <field name="name">res.partner.kanban.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="priority" eval="10"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="js_class">button_in_kanban</attribute>
+                </xpath>
+            </field>
+        </record>
+
 </odoo>
-        <!-- <group name="street" string="Street">
-            <div class="o_address_format">
-                <field name="street" placeholder="Street..." class="o_address_street" readonly="type == 'contact' and parent_id" />
-                <field name="street2" placeholder="Street 2..." class="o_address_street" readonly="type == 'contact' and parent_id" />
-            </div>
-        </group> -->
-
-        <!-- <div>
-                                    <field name="street" nolabel="1" placeholder="Street..." class="o_address_street" />
-                                </div>
-                                <div>
-                                    <field name="street2" nolabel="1" placeholder="Street 2..." class="o_address_street" />
-                                </div> -->
-
-
-        <!-- readonly="type == 'contact' and parent_id" -->
-
-
-        <!-- <record id="new_field_view_partner_search" model="ir.ui.view">
-                <field name="name">new field view partner search</field>
-                <field name="model">res.partner</field>
-                <field name="inherit_id" ref="base.view_res_partner_filter" />
-                <field name="arch" type="xml">
-
-                </field>
-            </record> -->

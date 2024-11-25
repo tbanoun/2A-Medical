@@ -65,10 +65,19 @@
         "views/quarter_frequency.xml",
         "views/event_event.xml",
         "views/product_gamme.xml",
+
+        #wizard
+        "wizard/wizard_import_report_frequency.xml",
     ],
     "assets": {
         "web.assets_backend": [
+            # xml
+            "contacts_dnd/static/src/xml/button_list.xml",
+            "contacts_dnd/static/src/xml/button_kanban.xml",
+            # css
             "contacts_dnd/static/src/css/commune.css",
+            # js
+            "contacts_dnd/static/src/js/tree_button.js"
         ],
     },
     "application": True,
