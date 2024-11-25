@@ -7,6 +7,9 @@ from odoo.exceptions import UserError
 from odoo.exceptions import AccessError
 from datetime import datetime
 from odoo.exceptions import ValidationError
+import xlwt
+import base64
+from io import BytesIO
 
 
 class ResPartner(models.Model):
@@ -401,6 +404,123 @@ class ResPartner(models.Model):
             }
             self.env['quarter.frequency'].sudo().create(vals)
         return True
+
+    #create function to generate a files xls:
+    def generate_report_frequency(self):
+        active_ids = self.env.context.get('active_ids', [])
+        partner_ids = self.env['res.partner'].sudo().browse(active_ids)
+        print("\n\n partner_ids", partner_ids)
+        return
+        self.env["imex.inventory.details.report"].init_results(report)
+        details = self.env["imex.inventory.details.report"].search([])
+
+        # Création du classeur et de la feuille de calcul
+        workbook = xlwt.Workbook()
+        sheet = workbook.add_sheet('Inventory Report')
+
+        # Styles
+        title_style = xlwt.easyxf('font: bold 1, height 280; align: vert centre, horiz center;')
+        # Définir les styles avec bordure et fond gris clair
+        header_style = xlwt.easyxf(
+            'font: bold 1; '
+            'borders: left thin, right thin, top thin, bottom thin; '  # Bordures
+            'align: horiz center; ')
+        content_style = xlwt.easyxf('borders: left thin, right thin, top thin, bottom thin;')
+        product_id = self.product_ids[0]
+        # Titre principal
+        sheet.write_merge(0, 1, 0, 9, f"Rapport d'inventaire Imex - {product_id.default_code} - {product_id.name}", title_style)
+        # Largeur totale définie par le tableau principal (10 colonnes)
+        total_width = 256 * 20 * 10  # Exemple: chaque colonne principale a une largeur de 20 caractères
+        # Largeur totale définie par le tableau principal (10 colonnes)
+        total_width = 256 * 20 * 10  # Exemple: chaque colonne principale a une largeur de 20 caractères
+
+        # Calculer la largeur par colonne
+        width_per_col_main = total_width // 10  # Largeur par colonne du tableau principal
+        width_per_col_small = total_width // 4  # Largeur par colonne pour le tableau à 4 colonnes
+
+        # Ajuster la largeur des colonnes du premier tableau (4 colonnes)
+        for col_index in range(4):  # Le premier tableau a 4 colonnes
+            sheet.col(col_index).width = width_per_col_small
+
+        # Ajuster la largeur des colonnes du deuxième tableau (10 colonnes)
+        for col_index in range(10):  # Le deuxième tableau a 10 colonnes
+            sheet.col(col_index).width = width_per_col_main
+
+        # Informations de filtre sous forme de tableau
+        sheet.write_merge(2, 2, 0, 1, f"Date de début",header_style)
+        sheet.write_merge(2, 2, 2, 3, f"Date de fin",header_style)
+        sheet.write_merge(2, 2, 4, 6, f"Emplacement", header_style)
+        sheet.write_merge(2, 2, 7, 9, f"Catégorie", header_style)
+        sheet.write_merge(3, 3, 0, 1, f"{report.date_from or ''}", header_style)
+        sheet.write_merge(3, 3, 2, 3, f"{report.date_to or ''}", header_style)
+        sheet.write_merge(3, 3, 4, 6, f"{self.location_id.name or 'Tous les stocks'}", header_style)
+        sheet.write_merge(3, 3, 7, 9, f"{product_id.categ_id.name or 'Toutes catégories'} ", header_style)
+
+        # En-têtes des colonnes
+        headers = [
+            'Date', 'Référence', 'Partenaire', 'Emplacement source', 'Emplacement de destination',
+            'Prix', 'Entrée', 'Sortie', 'Quantité Finale', 'Montant Final'
+        ]
+        for col_num, header in enumerate(headers):
+            sheet.write(4, col_num, header, header_style)
+
+        # Initialisation des variables pour le calcul
+        product_balance = 0.0
+        product_amount = 0.0
+
+        # Remplissage des données
+        row = 5
+        initial_lines = details.filtered(lambda l: not l.product_id)
+        main_lines = details.filtered(lambda l: l.product_id)
+
+        # Ligne initiale
+        if initial_lines:
+            initial_line = initial_lines[0]
+            product_balance = getattr(initial_line, 'initial', 0.0)
+            product_amount = getattr(initial_line, 'initial_amount', 0.0)
+        # Lignes principales
+        for product_line in main_lines:
+            product_balance += getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out', 0.0)
+            unit_cost = getattr(product_line, 'unit_cost', 0.0)
+            product_amount += (getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out',
+                                                                                  0.0)) * unit_cost
+            date = product_line.date.strftime('%d-%m-%Y') or "/"
+            sheet.write(row, 0, date , content_style)  # Date
+            sheet.write(row, 1, getattr(product_line, 'display_name', ''), content_style)  # Référence
+            sheet.write(row, 2, getattr(product_line.picking_id.partner_id, 'name', ''), content_style)  # Partenaire
+            sheet.write(row, 3, getattr(product_line.location_id, 'complete_name', ''),
+                        content_style)  # Emplacement source
+            sheet.write(row, 4, getattr(product_line.location_dest_id, 'complete_name', ''),
+                        content_style)  # Emplacement destination
+            sheet.write(row, 5, unit_cost, content_style)  # Prix
+            sheet.write(row, 6, getattr(product_line, 'product_in', 0.0), content_style)  # Entrée
+            sheet.write(row, 7, getattr(product_line, 'product_out', 0.0), content_style)  # Sortie
+            sheet.write(row, 8, product_balance, content_style)  # Quantité Finale
+            sheet.write(row, 9, product_amount, content_style)  # Montant Final
+
+            row += 1
+
+        # Enregistrement dans un flux BytesIO
+        fp = BytesIO()
+        workbook.save(fp)
+        fp.seek(0)
+        xls_data = fp.read()
+        fp.close()
+
+        # Création d'une pièce jointe pour le téléchargement
+        attachment = self.env['ir.attachment'].create({
+            'name': 'Inventory_Report.xls',
+            'type': 'binary',
+            'datas': base64.b64encode(xls_data),
+            'store_fname': 'Inventory_Report.xls',
+            'mimetype': 'application/vnd.ms-excel',
+        })
+
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/web/content/%s?download=true' % attachment.id,
+            'target': 'self',
+        }
 
 # class FrequencyLine(models.Model):
 #     _name = "res.partner.frequency.line"
