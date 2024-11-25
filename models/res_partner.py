@@ -19,7 +19,7 @@ class ResPartner(models.Model):
     ref = fields.Char(string="Code Tiers", default="New", readonly=True)
     sponsored_by = fields.Many2many('res.partner', string="Parrainer par", compute="getAllSponredPartner")
     parrinage_id = fields.Many2one('res.partner', string='Related Company', index=True)
-    sponsorship = fields.Many2many('res.partner', 'res_partner_sponsorship_rel', 'parrinage_id',  string='Parrainage')
+    sponsorship = fields.Many2many('res.partner', 'res_partner_sponsorship_rel', 'parrinage_id', string='Parrainage')
     partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
     gamme_id = fields.Many2one('product.gamme', string="Gamme de Produits")
@@ -53,8 +53,8 @@ class ResPartner(models.Model):
                 ('phone', '=', phone)
             ])
             if partner: raise ValidationError(
-                                _('Erreur!, vous ne pouvez pas créer un contact avec un numéro de télephone'
-                                  'qui est déja utulisé par un autre!'))
+                _('Erreur!, vous ne pouvez pas créer un contact avec un numéro de télephone'
+                  'qui est déja utulisé par un autre!'))
         # Si un dictionnaire unique est passé, on le transforme en liste
         if isinstance(vals_list, dict):
             vals_list = [vals_list]
@@ -88,8 +88,8 @@ class ResPartner(models.Model):
                 ('phone', '=', phone)
             ])
             if partner: raise ValidationError(
-                                _('Erreur!, vous ne pouvez pas enregistrer les modifications'
-                                  'le numéro de télephone est déja utulisé par un autre contact!'))
+                _('Erreur!, vous ne pouvez pas enregistrer les modifications'
+                  'le numéro de télephone est déja utulisé par un autre contact!'))
         return super(ResPartner, self).write(vals)
 
     # # ['ouest','est']
@@ -214,7 +214,7 @@ class ResPartner(models.Model):
     def _get_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-            [("is_company", "=", self.is_company)]
+                [("is_company", "=", self.is_company)]
         ):
             selection.append(("%s" % emp.id, "%s" % emp.description))
         return selection
@@ -228,7 +228,7 @@ class ResPartner(models.Model):
     def _get_default_category(self):
         selection = []
         for emp in self.env["customer.category"].search(
-            [("is_company", "=", True)]  # type: ignore
+                [("is_company", "=", True)]  # type: ignore
         ):
             selection.append(("%s" % emp.id, "%s" % emp.description))
         return selection
@@ -374,6 +374,7 @@ class ResPartner(models.Model):
         [("morning", "Matin"), ("afternoon", "Apres midi"), ("night", "Soir")],
         string="Reception Time",
     )
+
     # # frequence de visite
     # line_id = fields.One2many("res.partner.frequency.line", "customer_id")
 
@@ -411,7 +412,7 @@ class ResPartner(models.Model):
             'contacts_dnd.act_open_wizard_import_file_xls_frequency')
         return action
 
-    #create function to generate a files xls:
+    # create function to generate a files xls:
     def generate_report_frequency(self):
         active_ids = self.env.context.get('active_ids', [])
         partner_ids = self.env['res.partner'].sudo().browse(active_ids)
@@ -419,24 +420,31 @@ class ResPartner(models.Model):
         workbook = xlwt.Workbook()
         sheet = workbook.add_sheet('frequency contact')
         # Styles
-        title_style = xlwt.easyxf('font: bold 1, height 280; align: vert centre, horiz center;')
+        title_style = xlwt.easyxf('font: bold 1, height 280; align: vert centre, horiz center;' 'pattern: pattern solid, fore_colour grey25;')
+        title_sous_style = xlwt.easyxf(
+            'font: bold on, height 260; '
+            'align: vert centre, horiz left; '
+            'pattern: pattern solid, fore_colour yellow;'
+        )
+
         # Définir les styles avec bordure et fond gris clair
+        header_style_readonly = xlwt.easyxf(
+            'font: bold on, color black; '
+            'borders: left thin, right thin, top thin, bottom thin; '
+            'align: horiz left; '
+            'pattern: pattern solid, fore_colour grey25; '
+        )
         header_style = xlwt.easyxf(
-            'font: bold 1; '
-            'borders: left thin, right thin, top thin, bottom thin; '  # Bordures
-            'align: horiz center; ')
-        # header_style_background = xlwt.easyxf(
-        #     'font: bold 1; '
-        #     'borders: left thin, right thin, top thin, bottom thin; '  # Bordures
-        #     'align: horiz center; '
-        #     'background-color: green;'
-        # )
-        content_style = xlwt.easyxf('borders: left thin, right thin, top thin, bottom thin;')
-        # Titre principal
+            'font: bold on, color black; '
+            'borders: left thin, right thin, top thin, bottom thin; '
+            'align: horiz center; '
+            'pattern: pattern solid, fore_colour green; '
+        )
         # get year now
         year = datetime.now().year
+        # Titre principal
         sheet.write_merge(0, 1, 0, 9, f"Fiches des fréquences trimestrielles pour l'année - {year}", title_style)
-
+        sheet.write_merge(2, 2, 0, 4, f"Remarques:", title_sous_style)
         # Largeur totale définie par le tableau principal (10 colonnes)
         total_width = 256 * 20 * 10  # Exemple: chaque colonne principale a une largeur de 20 caractères
         # Largeur totale définie par le tableau principal (10 colonnes)
@@ -456,16 +464,16 @@ class ResPartner(models.Model):
                 sheet.col(col_index).width = width_per_col_main // 6
                 continue
             sheet.col(col_index).width = width_per_col_main
-        index = 2
+        index = 4
         for partner in partner_ids:
             # Informations de contact sous forme de tableau
-            sheet.write_merge(index, index, 0, 1, f"ID",header_style)
-            sheet.write_merge(index, index, 2, 3, f"Nom & prénom: {partner.name}",header_style)
-            sheet.write_merge(index, index, 4, 6, f"Email: {partner.email}", header_style)
-            sheet.write_merge(index, index, 7, 9, f"Télephone: {partner.phone}", header_style)
+            sheet.write_merge(index, index, 0, 1, f"ID", header_style_readonly)
+            sheet.write_merge(index, index, 2, 3, f"Nom & prénom: {partner.name}", header_style_readonly)
+            sheet.write_merge(index, index, 4, 6, f"Email: {partner.email}", header_style_readonly)
+            sheet.write_merge(index, index, 7, 9, f"Télephone: {partner.phone}", header_style_readonly)
             records = self.env['quarter.frequency'].sudo().search([
-            ('partner_id', '=', partner.id),
-            ('year', '=', year)
+                ('partner_id', '=', partner.id),
+                ('year', '=', year)
             ])
             if not records:
                 partner._createRecordQuarter(partner.id)
@@ -475,13 +483,13 @@ class ResPartner(models.Model):
                 ])
             index += 1
             for el in records:
-            # insert tableau des trimestre
-                sheet.write_merge(index, index, 0, 1, f"{partner.id}", header_style)
-                sheet.write_merge(index, index, 2, 3, f"{el.name}", header_style)
-                sheet.write_merge(index, index, 4, 5, f"Nombre de fréquences", header_style)
-                sheet.write_merge(index, index, 6, 6, f"", header_style)
-                sheet.write_merge(index, index, 7, 8, f"Type de fréquence", header_style)
-                sheet.write_merge(index, index, 9, 9, f"", header_style)
+                # insert tableau des trimestre
+                sheet.write_merge(index, index, 0, 1, f"{partner.id}", header_style_readonly)
+                sheet.write_merge(index, index, 2, 3, f"{el.name}", header_style_readonly)
+                sheet.write_merge(index, index, 4, 5, f"Nombre de fréquences", header_style_readonly)
+                sheet.write_merge(index, index, 6, 6, f"{el.frequencyNumber or 0}", header_style)
+                sheet.write_merge(index, index, 7, 8, f"Type de fréquence", header_style_readonly)
+                sheet.write_merge(index, index, 9, 9, f"{el.code_type_freq or ''}", header_style)
                 index += 1
             index += 2
 
@@ -513,15 +521,16 @@ _sql_constraints = [
     ("mobile_unique", "unique(mobile)", "Mobile must be unique"),
 ]
 
+
 class FrequencyFileXls(models.Model):
     _name = "file.xls"
 
     file_xls = fields.Binary("File xls")
     trimstre = fields.Selection(
         [
-        ('Trimestre 1', 1),
-        ('Trimestre 2', 2),
-        ('Trimestre 3', 3),
-        ('Trimestre 4', 4)
-    ], string = 'Usage',
-    default = 1, required = True)
+            ('Trimestre 1', 1),
+            ('Trimestre 2', 2),
+            ('Trimestre 3', 3),
+            ('Trimestre 4', 4)
+        ], string='Usage',
+        default=1, required=True)
