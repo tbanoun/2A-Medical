@@ -28,8 +28,11 @@ class ResPartner(models.Model):
             ])
             if partner_ids:
                 rec.sponsored_by = partner_ids.ids
+                rec.parrinage_id = partner_ids.ids[0]
+
             else:
                 rec.sponsored_by = []
+                rec.parrinage_id = None
 
     @api.model
     def update_presence_status(self, status):

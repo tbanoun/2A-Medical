@@ -339,6 +339,10 @@
                        name="group_by"
                        string="Group By">
                     <filter name="wilaya_id"
+                            string="Parrinage"
+                            domain="[]"
+                            context="{'group_by' : 'parrinage_id'}"/>
+                    <filter name="wilaya_id"
                             string="Wilaya"
                             domain="[]"
                             context="{'group_by' : 'wilaya_id'}"/>
