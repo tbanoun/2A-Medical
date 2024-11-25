@@ -6,6 +6,7 @@ from psycopg2 import errors
 from odoo.exceptions import UserError
 from odoo.exceptions import AccessError
 from datetime import datetime
+from odoo.exceptions import ValidationError
 
 
 class ResPartner(models.Model):
@@ -68,6 +69,14 @@ class ResPartner(models.Model):
     def write(self, vals):
         if "name" in vals:
             vals["name"] = vals["name"].upper()
+        if "phone" in vals:
+            phone = vals['phone']
+            partner = self.env['res.partner'].sudo().search([
+                ('phone', '=', phone)
+            ])
+            if partner: raise ValidationError(
+                                _('Erreur!, vous ne pouvez pas enregistrer les modifications'
+                                  'le numéro de télephone est déja utulisé par un autre contact!'))
         return super(ResPartner, self).write(vals)
 
     # # ['ouest','est']
