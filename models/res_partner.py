@@ -425,6 +425,12 @@ class ResPartner(models.Model):
             'font: bold 1; '
             'borders: left thin, right thin, top thin, bottom thin; '  # Bordures
             'align: horiz center; ')
+        # header_style_background = xlwt.easyxf(
+        #     'font: bold 1; '
+        #     'borders: left thin, right thin, top thin, bottom thin; '  # Bordures
+        #     'align: horiz center; '
+        #     'background-color: green;'
+        # )
         content_style = xlwt.easyxf('borders: left thin, right thin, top thin, bottom thin;')
         # Titre principal
         # get year now
@@ -445,62 +451,39 @@ class ResPartner(models.Model):
             sheet.col(col_index).width = width_per_col_small
 
         # Ajuster la largeur des colonnes du deuxième tableau (10 colonnes)
-        for col_index in range(10):  # Le deuxième tableau a 10 colonnes
+        for col_index in range(0, 10):  # Le deuxième tableau a 10 colonnes
+            if col_index == 0:
+                sheet.col(col_index).width = width_per_col_main // 6
+                continue
             sheet.col(col_index).width = width_per_col_main
-
-        # Informations de filtre sous forme de tableau
-        # sheet.write_merge(2, 2, 0, 1, f"Date de début",header_style)
-        # sheet.write_merge(2, 2, 2, 3, f"Date de fin",header_style)
-        # sheet.write_merge(2, 2, 4, 6, f"Emplacement", header_style)
-        # sheet.write_merge(2, 2, 7, 9, f"Catégorie", header_style)
-        # sheet.write_merge(3, 3, 0, 1, f"{report.date_from or ''}", header_style)
-        # sheet.write_merge(3, 3, 2, 3, f"{report.date_to or ''}", header_style)
-        # sheet.write_merge(3, 3, 4, 6, f"{self.location_id.name or 'Tous les stocks'}", header_style)
-        # sheet.write_merge(3, 3, 7, 9, f"{product_id.categ_id.name or 'Toutes catégories'} ", header_style)
-
-        # En-têtes des colonnes
-        headers = [
-            'Date', 'Référence', 'Partenaire', 'Emplacement source', 'Emplacement de destination',
-            'Prix', 'Entrée', 'Sortie', 'Quantité Finale', 'Montant Final'
-        ]
-        for col_num, header in enumerate(headers):
-            sheet.write(4, col_num, header, header_style)
-
-        # Initialisation des variables pour le calcul
-        product_balance = 0.0
-        product_amount = 0.0
-
-        # Remplissage des données
-        row = 5
-        # initial_lines = details.filtered(lambda l: not l.product_id)
-        # main_lines = details.filtered(lambda l: l.product_id)
-
-        # Ligne initiale
-        # if initial_lines:
-        #     initial_line = initial_lines[0]
-        #     product_balance = getattr(initial_line, 'initial', 0.0)
-        #     product_amount = getattr(initial_line, 'initial_amount', 0.0)
-        # # Lignes principales
-        # for product_line in main_lines:
-        #     product_balance += getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out', 0.0)
-        #     unit_cost = getattr(product_line, 'unit_cost', 0.0)
-        #     product_amount += (getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out',
-        #                                                                           0.0)) * unit_cost
-        #     date = product_line.date.strftime('%d-%m-%Y') or "/"
-        #     sheet.write(row, 0, date , content_style)  # Date
-        #     sheet.write(row, 1, getattr(product_line, 'display_name', ''), content_style)  # Référence
-        #     sheet.write(row, 2, getattr(product_line.picking_id.partner_id, 'name', ''), content_style)  # Partenaire
-        #     sheet.write(row, 3, getattr(product_line.location_id, 'complete_name', ''),
-        #                 content_style)  # Emplacement source
-        #     sheet.write(row, 4, getattr(product_line.location_dest_id, 'complete_name', ''),
-        #                 content_style)  # Emplacement destination
-        #     sheet.write(row, 5, unit_cost, content_style)  # Prix
-        #     sheet.write(row, 6, getattr(product_line, 'product_in', 0.0), content_style)  # Entrée
-        #     sheet.write(row, 7, getattr(product_line, 'product_out', 0.0), content_style)  # Sortie
-        #     sheet.write(row, 8, product_balance, content_style)  # Quantité Finale
-        #     sheet.write(row, 9, product_amount, content_style)  # Montant Final
-
-            # row += 1
+        index = 2
+        for partner in partner_ids:
+            # Informations de contact sous forme de tableau
+            sheet.write_merge(index, index, 0, 1, f"ID",header_style)
+            sheet.write_merge(index, index, 2, 3, f"Nom & prénom: {partner.name}",header_style)
+            sheet.write_merge(index, index, 4, 6, f"Email: {partner.email}", header_style)
+            sheet.write_merge(index, index, 7, 9, f"Télephone: {partner.phone}", header_style)
+            records = self.env['quarter.frequency'].sudo().search([
+            ('partner_id', '=', partner.id),
+            ('year', '=', year)
+            ])
+            if not records:
+                partner._createRecordQuarter(partner.id)
+                records = self.env['quarter.frequency'].sudo().search([
+                    ('partner_id', '=', partner.id),
+                    ('year', '=', year)
+                ])
+            index += 1
+            for el in records:
+            # insert tableau des trimestre
+                sheet.write_merge(index, index, 0, 1, f"{partner.id}", header_style)
+                sheet.write_merge(index, index, 2, 3, f"{el.name}", header_style)
+                sheet.write_merge(index, index, 4, 5, f"Nombre de fréquences", header_style)
+                sheet.write_merge(index, index, 6, 6, f"", header_style)
+                sheet.write_merge(index, index, 7, 8, f"Type de fréquence", header_style)
+                sheet.write_merge(index, index, 9, 9, f"", header_style)
+                index += 1
+            index += 2
 
         # Enregistrement dans un flux BytesIO
         fp = BytesIO()
