@@ -422,9 +422,21 @@ class ResPartner(models.Model):
         # Styles
         title_style = xlwt.easyxf('font: bold 1, height 280; align: vert centre, horiz center;' 'pattern: pattern solid, fore_colour grey25;')
         title_sous_style = xlwt.easyxf(
-            'font: bold on, height 260; '
+            'font: bold on, height 260, color red; '
             'align: vert centre, horiz left; '
             'pattern: pattern solid, fore_colour yellow;'
+        )
+
+        style_text_red = xlwt.easyxf(
+            'font: bold on, color red; '
+            'align: horiz left; '
+            'pattern: pattern solid, fore_colour yellow; '
+        )
+
+        style_text_red_right = xlwt.easyxf(
+            'font: bold on, color red; '
+            'align: horiz right; '
+            'pattern: pattern solid, fore_colour yellow; '
         )
 
         # Définir les styles avec bordure et fond gris clair
@@ -444,7 +456,20 @@ class ResPartner(models.Model):
         year = datetime.now().year
         # Titre principal
         sheet.write_merge(0, 1, 0, 9, f"Fiches des fréquences trimestrielles pour l'année - {year}", title_style)
-        sheet.write_merge(2, 2, 0, 4, f"Remarques:", title_sous_style)
+        # la remarque:
+        sheet.write_merge(2, 2, 0, 9, f"Remarques:", title_sous_style)
+        sheet.write_merge(3, 4, 0, 5, f"1.Vous pouvez uniquement modifier les cases dans l'arrière-plan de couleur verte.", style_text_red)
+        sheet.write_merge(5, 6, 0, 5, f"2.Les cases dans l'arrière-plan gris sont réservées à l'administration.", style_text_red)
+        sheet.write_merge(7, 7, 0, 5, "", style_text_red)
+        #les required
+        sheet.write_merge(3, 3, 6, 9, f"Type de fréquence:", title_sous_style)
+        sheet.write_merge(4, 4, 6, 6, f"1  =>", style_text_red_right)
+        sheet.write_merge(4, 4, 7, 9, f"Semaine (Week)", style_text_red)
+        sheet.write_merge(5, 5, 6, 6, f"2  =>", style_text_red_right)
+        sheet.write_merge(5, 5, 7, 9, f"Mois (Month)", style_text_red)
+        sheet.write_merge(6, 6, 6, 6, f"3  =>", style_text_red_right)
+        sheet.write_merge(6, 6, 7, 9, f"Quart (Quarter)", style_text_red)
+        sheet.write_merge(7, 7, 6, 9, f"", title_sous_style)
         # Largeur totale définie par le tableau principal (10 colonnes)
         total_width = 256 * 20 * 10  # Exemple: chaque colonne principale a une largeur de 20 caractères
         # Largeur totale définie par le tableau principal (10 colonnes)
@@ -464,7 +489,7 @@ class ResPartner(models.Model):
                 sheet.col(col_index).width = width_per_col_main // 6
                 continue
             sheet.col(col_index).width = width_per_col_main
-        index = 4
+        index = 10
         for partner in partner_ids:
             # Informations de contact sous forme de tableau
             sheet.write_merge(index, index, 0, 1, f"ID", header_style_readonly)
@@ -489,7 +514,7 @@ class ResPartner(models.Model):
                 sheet.write_merge(index, index, 4, 5, f"Nombre de fréquences", header_style_readonly)
                 sheet.write_merge(index, index, 6, 6, f"{el.frequencyNumber or 0}", header_style)
                 sheet.write_merge(index, index, 7, 8, f"Type de fréquence", header_style_readonly)
-                sheet.write_merge(index, index, 9, 9, f"{el.code_type_freq or ''}", header_style)
+                sheet.write_merge(index, index, 9, 9, f"{el.code_type_freq or '0'}", header_style)
                 index += 1
             index += 2
 
