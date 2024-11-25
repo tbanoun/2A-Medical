@@ -489,7 +489,7 @@ class ResPartner(models.Model):
                 sheet.col(col_index).width = width_per_col_main // 6
                 continue
             sheet.col(col_index).width = width_per_col_main
-        index = 8
+        index = 10
         for partner in partner_ids:
             # Informations de contact sous forme de tableau
             sheet.write_merge(index, index, 0, 1, f"ID", header_style_readonly)
