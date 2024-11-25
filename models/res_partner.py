@@ -415,15 +415,9 @@ class ResPartner(models.Model):
     def generate_report_frequency(self):
         active_ids = self.env.context.get('active_ids', [])
         partner_ids = self.env['res.partner'].sudo().browse(active_ids)
-        print("\n\n partner_ids", partner_ids)
-        return
-        self.env["imex.inventory.details.report"].init_results(report)
-        details = self.env["imex.inventory.details.report"].search([])
-
         # Création du classeur et de la feuille de calcul
         workbook = xlwt.Workbook()
-        sheet = workbook.add_sheet('Inventory Report')
-
+        sheet = workbook.add_sheet('frequency contact')
         # Styles
         title_style = xlwt.easyxf('font: bold 1, height 280; align: vert centre, horiz center;')
         # Définir les styles avec bordure et fond gris clair
@@ -432,9 +426,11 @@ class ResPartner(models.Model):
             'borders: left thin, right thin, top thin, bottom thin; '  # Bordures
             'align: horiz center; ')
         content_style = xlwt.easyxf('borders: left thin, right thin, top thin, bottom thin;')
-        product_id = self.product_ids[0]
         # Titre principal
-        sheet.write_merge(0, 1, 0, 9, f"Rapport d'inventaire Imex - {product_id.default_code} - {product_id.name}", title_style)
+        # get year now
+        year = datetime.now().year
+        sheet.write_merge(0, 1, 0, 9, f"Fiches des fréquences trimestrielles pour l'année - {year}", title_style)
+
         # Largeur totale définie par le tableau principal (10 colonnes)
         total_width = 256 * 20 * 10  # Exemple: chaque colonne principale a une largeur de 20 caractères
         # Largeur totale définie par le tableau principal (10 colonnes)
@@ -453,14 +449,14 @@ class ResPartner(models.Model):
             sheet.col(col_index).width = width_per_col_main
 
         # Informations de filtre sous forme de tableau
-        sheet.write_merge(2, 2, 0, 1, f"Date de début",header_style)
-        sheet.write_merge(2, 2, 2, 3, f"Date de fin",header_style)
-        sheet.write_merge(2, 2, 4, 6, f"Emplacement", header_style)
-        sheet.write_merge(2, 2, 7, 9, f"Catégorie", header_style)
-        sheet.write_merge(3, 3, 0, 1, f"{report.date_from or ''}", header_style)
-        sheet.write_merge(3, 3, 2, 3, f"{report.date_to or ''}", header_style)
-        sheet.write_merge(3, 3, 4, 6, f"{self.location_id.name or 'Tous les stocks'}", header_style)
-        sheet.write_merge(3, 3, 7, 9, f"{product_id.categ_id.name or 'Toutes catégories'} ", header_style)
+        # sheet.write_merge(2, 2, 0, 1, f"Date de début",header_style)
+        # sheet.write_merge(2, 2, 2, 3, f"Date de fin",header_style)
+        # sheet.write_merge(2, 2, 4, 6, f"Emplacement", header_style)
+        # sheet.write_merge(2, 2, 7, 9, f"Catégorie", header_style)
+        # sheet.write_merge(3, 3, 0, 1, f"{report.date_from or ''}", header_style)
+        # sheet.write_merge(3, 3, 2, 3, f"{report.date_to or ''}", header_style)
+        # sheet.write_merge(3, 3, 4, 6, f"{self.location_id.name or 'Tous les stocks'}", header_style)
+        # sheet.write_merge(3, 3, 7, 9, f"{product_id.categ_id.name or 'Toutes catégories'} ", header_style)
 
         # En-têtes des colonnes
         headers = [
@@ -476,35 +472,35 @@ class ResPartner(models.Model):
 
         # Remplissage des données
         row = 5
-        initial_lines = details.filtered(lambda l: not l.product_id)
-        main_lines = details.filtered(lambda l: l.product_id)
+        # initial_lines = details.filtered(lambda l: not l.product_id)
+        # main_lines = details.filtered(lambda l: l.product_id)
 
         # Ligne initiale
-        if initial_lines:
-            initial_line = initial_lines[0]
-            product_balance = getattr(initial_line, 'initial', 0.0)
-            product_amount = getattr(initial_line, 'initial_amount', 0.0)
-        # Lignes principales
-        for product_line in main_lines:
-            product_balance += getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out', 0.0)
-            unit_cost = getattr(product_line, 'unit_cost', 0.0)
-            product_amount += (getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out',
-                                                                                  0.0)) * unit_cost
-            date = product_line.date.strftime('%d-%m-%Y') or "/"
-            sheet.write(row, 0, date , content_style)  # Date
-            sheet.write(row, 1, getattr(product_line, 'display_name', ''), content_style)  # Référence
-            sheet.write(row, 2, getattr(product_line.picking_id.partner_id, 'name', ''), content_style)  # Partenaire
-            sheet.write(row, 3, getattr(product_line.location_id, 'complete_name', ''),
-                        content_style)  # Emplacement source
-            sheet.write(row, 4, getattr(product_line.location_dest_id, 'complete_name', ''),
-                        content_style)  # Emplacement destination
-            sheet.write(row, 5, unit_cost, content_style)  # Prix
-            sheet.write(row, 6, getattr(product_line, 'product_in', 0.0), content_style)  # Entrée
-            sheet.write(row, 7, getattr(product_line, 'product_out', 0.0), content_style)  # Sortie
-            sheet.write(row, 8, product_balance, content_style)  # Quantité Finale
-            sheet.write(row, 9, product_amount, content_style)  # Montant Final
+        # if initial_lines:
+        #     initial_line = initial_lines[0]
+        #     product_balance = getattr(initial_line, 'initial', 0.0)
+        #     product_amount = getattr(initial_line, 'initial_amount', 0.0)
+        # # Lignes principales
+        # for product_line in main_lines:
+        #     product_balance += getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out', 0.0)
+        #     unit_cost = getattr(product_line, 'unit_cost', 0.0)
+        #     product_amount += (getattr(product_line, 'product_in', 0.0) - getattr(product_line, 'product_out',
+        #                                                                           0.0)) * unit_cost
+        #     date = product_line.date.strftime('%d-%m-%Y') or "/"
+        #     sheet.write(row, 0, date , content_style)  # Date
+        #     sheet.write(row, 1, getattr(product_line, 'display_name', ''), content_style)  # Référence
+        #     sheet.write(row, 2, getattr(product_line.picking_id.partner_id, 'name', ''), content_style)  # Partenaire
+        #     sheet.write(row, 3, getattr(product_line.location_id, 'complete_name', ''),
+        #                 content_style)  # Emplacement source
+        #     sheet.write(row, 4, getattr(product_line.location_dest_id, 'complete_name', ''),
+        #                 content_style)  # Emplacement destination
+        #     sheet.write(row, 5, unit_cost, content_style)  # Prix
+        #     sheet.write(row, 6, getattr(product_line, 'product_in', 0.0), content_style)  # Entrée
+        #     sheet.write(row, 7, getattr(product_line, 'product_out', 0.0), content_style)  # Sortie
+        #     sheet.write(row, 8, product_balance, content_style)  # Quantité Finale
+        #     sheet.write(row, 9, product_amount, content_style)  # Montant Final
 
-            row += 1
+            # row += 1
 
         # Enregistrement dans un flux BytesIO
         fp = BytesIO()
@@ -515,10 +511,10 @@ class ResPartner(models.Model):
 
         # Création d'une pièce jointe pour le téléchargement
         attachment = self.env['ir.attachment'].create({
-            'name': 'Inventory_Report.xls',
+            'name': f'Fiches des fréquences trimestrielles{year}.xls',
             'type': 'binary',
             'datas': base64.b64encode(xls_data),
-            'store_fname': 'Inventory_Report.xls',
+            'store_fname': f'Fiches_des_frequences_trimestrielles{year}.xls',
             'mimetype': 'application/vnd.ms-excel',
         })
 
@@ -528,126 +524,21 @@ class ResPartner(models.Model):
             'target': 'self',
         }
 
-# class FrequencyLine(models.Model):
-#     _name = "res.partner.frequency.line"
-#     _description = "Customer Frequence"
-#     _inherit = ["mail.thread", "mail.activity.mixin"]
-
-# date_rdv = fields.Datetime(string="Date")
-# customer_id = fields.Many2one("res.partner", string="Customer Lines")
-# state = fields.Selection(
-#     [
-#         ("draft", "Draft"),
-#         ("plan", "Plan Tournée"),
-#         ("programmed", "Programmed"),
-#         ("visited", "Visted"),
-#         ("late", "Late"),
-#     ],
-#     default="plan",
-# )
-# line_note = fields.Html(string="Note")
-
-# days_since_date = fields.Char(
-#     string="Elaps Time", compute="_compute_days_since_date"
-# )
-
-# @api.model
-# def action_draft(self):
-#     for rec in self:
-#         rec.state = "draft"
-
-# @api.model
-# def action_programmed(self):
-#     for rec in self:
-#         rec.state = "programmed"
-
-# @api.model
-# def action_visited(self):
-#     for rec in self:
-#         rec.state = "visited"
-
-# @api.model
-# def action_late(self):
-#     for rec in self:
-#         rec.state = "late"
-
-# create frequence
-
-# for product in self:
-#     existing_bom = self.env["mrp.bom"].search(
-#         [("product_tmpl_id", "=", self.product_tmpl_id.id)], limit=1
-#     )
-
-#     if not existing_bom:
-
-#         if self.product_tmpl_id:
-#             # Créer la nomenclature (BOM)
-#             bom = self.env["mrp.bom"].create(
-#                 {
-#                     "product_tmpl_id": self.product_tmpl_id.sudo().id,  # Utilise l'ID du modèle de produit
-#                     "product_qty": 1,  # Quantité de nomenclature
-#                     "type": "normal",  #'normal' (standard) ou 'phantom' (kit)
-#                     "code": "teste",  # refernce nomenclature
-#                 }
-#             )
-#         # Paramètres fictifs pour l'exemple
-#         # Créer les lignes de nomenclature (BOM Lines)
-#         for line in self.listeOptions:
-#             print("line xxxxxxxxxxxxxxxxxxxxxxxxxx", line)
-#             self.env["mrp.bom.line"].create(
-#                 {
-#                     "bom_id": bom.id,
-#                     "product_id": line.id,  # ID du produit composant
-#                     "product_qty": 2,  # Quantité du composant
-#                 }
-#             )
-#         return bom
-#     else:
-#         print(f"Le produit {product.name} possède déjà une nomenclature (BOM).")
-
-# @api.depends("date_rdv")
-# def _compute_days_since_date(self):
-#     delta = 0
-#     for rec in self:
-#         # if rec.date_rdv:
-#         today = datetime.now()
-#         delta = rec.date_rdv
-# print(rec.date_rdv)
-# print(delta)
-# rec.days_since_date = delta
-# print(delta)
-# if delta.days == -1:
-#     rec.days_since_date = "Aujourd'hui"  # =0
-#     # rec.state = "late"
-# else:
-#     rec.days_since_date = f"{delta.days} jours"
-# print(today)
-# print(delta)
-
-# code_posfiscale = fields.Selection(_get_posfiscale, string="Position Fiscale")
-
-# wilaya_zone = fields.Char(related="customer_wilaya.zone", string="Zone")
-
 
 # check mobile unique
 _sql_constraints = [
     ("mobile_unique", "unique(mobile)", "Mobile must be unique"),
 ]
 
-# @api.constrains("mobile")
-# def _check_mobile(self):
-#     for rec in self:
-#         if rec.mobile and len(rec.mobile) != 10:
-#             raise ValidationError(_("Mobile must be 10 digits"))
-
-# ovveride create method
-
-
-# def unlink(self):
-#     res = super().unlink()
-#     return res
-
 class FrequencyFileXls(models.Model):
     _name = "file.xls"
 
     file_xls = fields.Binary("File xls")
+    trimstre = fields.Selection(
+        [
+        ('Trimestre 1', 1),
+        ('Trimestre 2', 2),
+        ('Trimestre 3', 3),
+        ('Trimestre 4', 4)
+    ], string = 'Usage',
+    default = 1, required = True)
