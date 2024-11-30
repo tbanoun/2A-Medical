@@ -3,13 +3,11 @@
     <menuitem id="zone_menu_root"
         name="Contacts Zone"
         parent="contacts.res_partner_menu_config"
-        groups="contacts_dnd.masterData_manager_group"
         sequence="10" />
 
     <menuitem id="contacts_custom_menu_root"
         name="Parametres clients"
         parent="contacts.res_partner_menu_config"
-        groups="contacts_dnd.masterData_manager_group"
         sequence="0" />
 
     <menuitem id="customer_partner_menu"

@@ -99,8 +99,7 @@
                         <group>
                             <field name="user_id"
                                    widget="selection"
-                                   placeholder="e.g. walid"
-                                   groups="contacts_dnd.masterData_manager_group"/>
+                                   placeholder="e.g. walid"/>
                         </group>
                         <group name="group_contacts"
                                col="2">
