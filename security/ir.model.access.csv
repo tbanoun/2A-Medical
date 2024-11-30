@@ -40,8 +40,9 @@ access_type_freq,type.freq,model_type_freq,,1,1,1,0
 access_type_freq,type.freq,model_type_freq,,1,1,1,1
 access_res_periode,res.periode,model_res_periode,,1,1,1,0
 access_res_periode,res.periode,model_res_periode,,1,1,1,1
-access_res_partner,res.partner,model_res_partner,,1,1,1,0
-access_res_partner,res.partner,model_res_partner,,1,1,1,1
+access_res_partner,res.partner,model_res_partner,group_salesperson_access,1,1,0,0
+access_res_partner_teams,res.partner,model_res_partner,group_salesperson_tesam_access,1,1,1,0
+access_event_event,event.event,model_event_event,group_salesperson_access,1,0,0,0
 
 
 access_crm_visit_next,crm.visit.next,model_crm_visit_next,,1,1,1,0

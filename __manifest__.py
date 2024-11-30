@@ -25,7 +25,7 @@
         "security/security.xml",
         "security/ir.model.access.csv",
         # "data/sequence.xml",
-        # "data/type_freq_data.xml",
+        "data/type_freq_data.xml",
         # "data/customer_adoption_data.xml",
         # "data/customer_category_data.xml",
         # "data/customer_interest_data.xml",

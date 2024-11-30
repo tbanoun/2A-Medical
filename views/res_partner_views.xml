@@ -412,27 +412,12 @@
         </field>
     </record>
 
-    <record id="action_import_xls_file_frequency" model="ir.actions.server">
-        <field name="name">Importer les fiches de fréquences</field>
-        <field name="model_id" ref="model_res_partner"/>
-        <field name="binding_model_id" ref="model_res_partner"/>
-        <field name="state">code</field>
-        <field name="sequence" eval="2"/>
-        <field name="code">
-            action = env['res.partner'].import_report_frequency()
-        </field>
-    </record>
-
-
-    <record id="new_field_view_partner_tree"
-            model="ir.ui.view">
+    <record id="new_field_view_partner_tree" model="ir.ui.view">
         <field name="name">contacts custom tree</field>
         <field name="model">res.partner</field>
         <field name="type">tree</field>
-        <field name="inherit_id"
-               ref="base.view_partner_tree"/>
-        <field name="arch"
-               type="xml">
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
             <!--Add button tree view import the xls files-->
             <xpath expr="//tree" position="attributes">
                 <attribute name="js_class">button_in_tree</attribute>
@@ -481,15 +466,13 @@
                 <field name="code_type_freq"
                        string="Frequency"
                        optional="show"/>
-                <field name="gamme_id"
-                       string="Gamme de produit"
+                <field name="gamme_id" string="Gamme de produit"
                        optional="hide"/>
             </xpath>
         </field>
     </record>
     <!-- action server -->
-    <record id="action_partner_user_current"
-            model="ir.actions.act_window">
+    <record id="action_partner_user_current" model="ir.actions.act_window">
         <field name="name">Partner Current User</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
@@ -499,15 +482,15 @@
 
     <!--heriter la vue kanban du res_partner-->
     <record id="contact_partner_kanban_view" model="ir.ui.view">
-            <field name="name">res.partner.kanban.inherit</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
-            <field name="priority" eval="10"/>
-            <field name="arch" type="xml">
-                <xpath expr="//kanban" position="attributes">
-                    <attribute name="js_class">button_in_kanban</attribute>
-                </xpath>
-            </field>
-        </record>
+        <field name="name">res.partner.kanban.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="js_class">button_in_kanban</attribute>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>

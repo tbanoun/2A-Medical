@@ -23,6 +23,8 @@ class ResPartner(models.Model):
     partner = fields.Many2one('res.partner', 'Contact')
     mobile = fields.Char(string="Mobile")
     gamme_id = fields.Many2one('product.gamme', string="Gamme de Produits")
+    related_user = fields.Many2one("res.users", precompute=True,  # avoid queries post-create
+                           readonly=False, store=True, string="Utilisateur associé" )
 
     def getAllSponredPartner(self):
         for rec in self:
@@ -420,7 +422,8 @@ class ResPartner(models.Model):
         workbook = xlwt.Workbook()
         sheet = workbook.add_sheet('frequency contact')
         # Styles
-        title_style = xlwt.easyxf('font: bold 1, height 280; align: vert centre, horiz center;' 'pattern: pattern solid, fore_colour grey25;')
+        title_style = xlwt.easyxf(
+            'font: bold 1, height 280; align: vert centre, horiz center;' 'pattern: pattern solid, fore_colour grey25;')
         title_sous_style = xlwt.easyxf(
             'font: bold on, height 260, color red; '
             'align: vert centre, horiz left; '
@@ -458,10 +461,13 @@ class ResPartner(models.Model):
         sheet.write_merge(0, 1, 0, 9, f"Fiches des fréquences trimestrielles pour l'année - {year}", title_style)
         # la remarque:
         sheet.write_merge(2, 2, 0, 9, f"Remarques:", title_sous_style)
-        sheet.write_merge(3, 4, 0, 5, f"1.Vous pouvez uniquement modifier les cases dans l'arrière-plan de couleur verte.", style_text_red)
-        sheet.write_merge(5, 6, 0, 5, f"2.Les cases dans l'arrière-plan gris sont réservées à l'administration.", style_text_red)
+        sheet.write_merge(3, 4, 0, 5,
+                          f"1.Vous pouvez uniquement modifier les cases dans l'arrière-plan de couleur verte.",
+                          style_text_red)
+        sheet.write_merge(5, 6, 0, 5, f"2.Les cases dans l'arrière-plan gris sont réservées à l'administration.",
+                          style_text_red)
         sheet.write_merge(7, 7, 0, 5, "", style_text_red)
-        #les required
+        # les required
         sheet.write_merge(3, 3, 6, 9, f"Type de fréquence:", title_sous_style)
         sheet.write_merge(4, 4, 6, 6, f"1  =>", style_text_red_right)
         sheet.write_merge(4, 4, 7, 9, f"Semaine (Week)", style_text_red)
