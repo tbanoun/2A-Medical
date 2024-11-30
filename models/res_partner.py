@@ -95,17 +95,17 @@ class ResPartner(models.Model):
         return super(ResPartner, self).write(vals)
 
     # # ['ouest','est']
-    def unlink(self):
-        user_id = self.env.user.id
-        sale_team_id = self.env.user.team_id.id
-        print("sale_team_id", sale_team_id)
-        user = self.env["res.users"].browse(user_id)
-        groups = user.groups_id
-        group_names = user.groups_id.mapped("name")
-        if "Master Data Manager" not in group_names:
-            print("groups", group_names)
-            raise UserError("La suppression des contacts est désactivée.")
-        return super(ResPartner, self).unlink()
+    # def unlink(self):
+    #     user_id = self.env.user.id
+    #     sale_team_id = self.env.user.team_id.id
+    #     print("sale_team_id", sale_team_id)
+    #     user = self.env["res.users"].browse(user_id)
+    #     groups = user.groups_id
+    #     group_names = user.groups_id.mapped("name")
+    #     if "Master Data Manager" not in group_names:
+    #         print("groups", group_names)
+    #         raise UserError("La suppression des contacts est désactivée.")
+    #     return super(ResPartner, self).unlink()
 
     # exemple record rules computed
     user_team_id = fields.Many2one(
